@@ -4,4 +4,8 @@ import java.util.List;
 
 public interface GoServer {
     List<Game> getActiveGames();
+
+    String getName();
+
+    GoServerType getType();
 }

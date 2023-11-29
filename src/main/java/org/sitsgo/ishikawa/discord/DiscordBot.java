@@ -1,22 +1,28 @@
-package org.sitsgo.ishikawa;
+package org.sitsgo.ishikawa.discord;
 
+import discord4j.common.util.Snowflake;
 import discord4j.core.DiscordClientBuilder;
 import discord4j.core.GatewayDiscordClient;
 import discord4j.core.event.domain.interaction.ChatInputInteractionEvent;
 import discord4j.core.object.command.ApplicationCommandOption;
+import discord4j.core.object.entity.channel.GuildMessageChannel;
+import discord4j.core.spec.EmbedCreateSpec;
 import discord4j.discordjson.json.ApplicationCommandOptionData;
 import discord4j.discordjson.json.ApplicationCommandRequest;
+import discord4j.rest.util.Color;
+import org.sitsgo.ishikawa.goserver.Game;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
 @Component("bot")
-public class Bot {
-    private static final Logger log = LoggerFactory.getLogger(Bot.class);
+public class DiscordBot {
+    private static final Logger log = LoggerFactory.getLogger(DiscordBot.class);
     private GatewayDiscordClient client;
 
     @Value("${discord.application-id}")
@@ -28,7 +34,10 @@ public class Bot {
     @Value("${discord.token}")
     private String token;
 
-    public Bot() {
+    @Value("${discord.game-announcement-channel-id}")
+    private long gameAnnouncementChannelId;
+
+    public DiscordBot() {
 
     }
 
@@ -48,6 +57,28 @@ public class Bot {
 
             log.info("Discord Bot successfully logged in");
         }
+    }
+
+    public void announceGame(Game game) {
+        EmbedCreateSpec embed = createGameAnnouncementEmbed(game);
+
+        client.getChannelById(Snowflake.of(gameAnnouncementChannelId))
+                .ofType(GuildMessageChannel.class)
+                .flatMap(channel -> channel.createMessage(embed))
+                .subscribe();
+    }
+
+    private EmbedCreateSpec createGameAnnouncementEmbed(Game game) {
+        return EmbedCreateSpec.builder()
+                .color(Color.RED)
+                .title(game.getTitle())
+                .description("⚔\uFE0F Une partie vient de commencer !")
+                .addField("Serveur", game.getServerName(), false)
+                .addField("Komi", String.valueOf(game.getKomi()), true)
+                .addField("Handicap", String.valueOf(game.getHandicap()), true)
+                .addField("Goban", game.getGobanSize(), true)
+                .timestamp(Instant.now())
+                .build();
     }
 
     public void registerCommands() {

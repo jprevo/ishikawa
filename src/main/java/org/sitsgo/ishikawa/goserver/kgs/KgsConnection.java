@@ -1,11 +1,9 @@
 package org.sitsgo.ishikawa.goserver.kgs;
 
 import org.json.JSONObject;
-import org.sitsgo.ishikawa.goserver.Game;
 import org.sitsgo.ishikawa.goserver.GoServerException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -14,7 +12,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.*;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
 
 @Component
 public class KgsConnection {
@@ -30,21 +27,16 @@ public class KgsConnection {
     @Value("${goserver.kgs.password}")
     private String password;
 
-    private final GameExtractor extractor;
-
-    @Autowired
-    KgsConnection(GameExtractor extractor) {
+    KgsConnection() {
         CookieManager cookieManager = new CookieManager();
         CookieHandler.setDefault(cookieManager);
-
-        this.extractor = extractor;
     }
 
-    ArrayList<Game> getResponse() throws GoServerException {
+    JSONObject getResponse() throws GoServerException {
         try {
             login();
-            JSONObject serverData = getData();
-            return extractor.extractGames(serverData);
+
+            return getData();
         } catch (MalformedURLException e) {
             throw new Error("KGS json API endpoint malformed");
         } catch (IOException e) {

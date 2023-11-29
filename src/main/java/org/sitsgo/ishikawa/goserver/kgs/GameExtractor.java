@@ -18,6 +18,11 @@ public class GameExtractor {
     public ArrayList<Game> extractGames(JSONObject data) throws GoServerException {
         ArrayList<Game> games = new ArrayList<>();
         JSONObject room = getRoom(data);
+
+        if (!room.has("games")) {
+            return games;
+        }
+
         JSONArray gameRecords = room.getJSONArray("games");
 
         for (int j = 0; j < gameRecords.length(); j++) {
@@ -32,7 +37,7 @@ public class GameExtractor {
             Game game = new Game(record.getInt("channelId"));
 
             if (record.has("komi")) {
-                game.setKomi(record.getFloat("komi"));
+                game.setKomi((float) record.getDouble("komi"));
             }
 
             if (record.has("handicap")) {
@@ -61,6 +66,10 @@ public class GameExtractor {
     }
 
     private JSONObject getRoom(JSONObject data) throws GoServerException {
+        if (!data.has("messages")) {
+            throw new GoServerException("Malformed KGS server data");
+        }
+
         JSONArray messages = data.getJSONArray("messages");
 
         for (int i = 0; i < messages.length(); i++) {

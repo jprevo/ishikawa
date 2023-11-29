@@ -1,0 +1,1828 @@
+{
+  "messages": [
+    {
+      "versionBugfix": 124,
+      "type": "HELLO",
+      "versionMajor": 3,
+      "versionMinor": 5,
+      "jsonClientBuild": "2021-01-26T06:43Z"
+    },
+    {
+      "rooms": [
+        {
+          "category": "FRIENDLY",
+          "channelId": 32869018
+        },
+        {
+          "category": "MAIN",
+          "channelId": 1
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 40347270
+        },
+        {
+          "category": "TOURNAMENT",
+          "channelId": 323676
+        },
+        {
+          "category": "NATIONAL",
+          "channelId": 2
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 72139421
+        },
+        {
+          "category": "LESSONS",
+          "channelId": 43900016
+        },
+        {
+          "category": "MAIN",
+          "channelId": 4
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 62132
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 620508
+        },
+        {
+          "category": "MAIN",
+          "channelId": 5
+        },
+        {
+          "category": "MAIN",
+          "channelId": 6
+        },
+        {
+          "category": "MAIN",
+          "channelId": 7
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 3371740
+        },
+        {
+          "category": "MAIN",
+          "channelId": 8
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 50990936
+        },
+        {
+          "category": "MAIN",
+          "channelId": 11450552
+        },
+        {
+          "category": "MAIN",
+          "channelId": 10
+        },
+        {
+          "category": "SPECIAL",
+          "channelId": 72139429
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 36954838
+        },
+        {
+          "category": "MAIN",
+          "channelId": 11
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 32495501
+        },
+        {
+          "category": "MAIN",
+          "channelId": 13
+        },
+        {
+          "category": "MAIN",
+          "channelId": 14
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 210940
+        },
+        {
+          "category": "MAIN",
+          "channelId": 16
+        },
+        {
+          "category": "TOURNAMENT",
+          "channelId": 31954771
+        },
+        {
+          "category": "MAIN",
+          "channelId": 17
+        },
+        {
+          "category": "LESSONS",
+          "channelId": 24266365
+        },
+        {
+          "category": "MAIN",
+          "channelId": 19
+        },
+        {
+          "category": "MAIN",
+          "channelId": 20
+        },
+        {
+          "category": "MAIN",
+          "channelId": 22
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 452554
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 657343
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 24
+        },
+        {
+          "category": "NATIONAL",
+          "channelId": 27
+        },
+        {
+          "category": "MAIN",
+          "channelId": 31
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 309133
+        },
+        {
+          "category": "LESSONS",
+          "channelId": 800781
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 2496618
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 302232
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 470208
+        },
+        {
+          "category": "NATIONAL",
+          "channelId": 38
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 41
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 39269678
+        },
+        {
+          "category": "MAIN",
+          "channelId": 46
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 309152
+        },
+        {
+          "category": "NATIONAL",
+          "channelId": 53
+        },
+        {
+          "category": "LESSONS",
+          "channelId": 3953939
+        },
+        {
+          "category": "NATIONAL",
+          "channelId": 54
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 438780
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 4179443
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 62
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 49577409
+        },
+        {
+          "category": "NATIONAL",
+          "channelId": 63
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 35532106
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 1940575
+        },
+        {
+          "category": "NATIONAL",
+          "channelId": 65
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 31601234
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 754028
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 537734
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 49309732
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 6209702
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 3857315
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 72
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 11227423
+        },
+        {
+          "category": "NATIONAL",
+          "channelId": 77
+        },
+        {
+          "category": "LESSONS",
+          "channelId": 9920457
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 399686
+        },
+        {
+          "category": "LESSONS",
+          "channelId": 80
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 502469
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 115901
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 84
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 86
+        },
+        {
+          "category": "TOURNAMENT",
+          "channelId": 474860
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 118983
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 98
+        },
+        {
+          "category": "LESSONS",
+          "channelId": 99
+        },
+        {
+          "category": "LESSONS",
+          "channelId": 2083272
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 2630912
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 49309766
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 42628429
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 105
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 28885326
+        },
+        {
+          "category": "NATIONAL",
+          "channelId": 107
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 35391
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 109
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 332223
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 112
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 56075485
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 55125173
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 23302345
+        },
+        {
+          "category": "MAIN",
+          "channelId": 118
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 123
+        },
+        {
+          "category": "NATIONAL",
+          "channelId": 128
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 129
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 130
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 301562
+        },
+        {
+          "category": "NATIONAL",
+          "channelId": 44280576
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 36609809
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 133
+        },
+        {
+          "category": "TEMPORARY",
+          "channelId": 73444219
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 138
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 23665926
+        },
+        {
+          "category": "TEMPORARY",
+          "channelId": 73444227
+        },
+        {
+          "category": "MAIN",
+          "channelId": 142
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 85286
+        },
+        {
+          "category": "LESSONS",
+          "channelId": 153
+        },
+        {
+          "category": "NATIONAL",
+          "channelId": 154
+        },
+        {
+          "category": "LESSONS",
+          "channelId": 53478467
+        },
+        {
+          "category": "NATIONAL",
+          "channelId": 160
+        },
+        {
+          "category": "NATIONAL",
+          "channelId": 163
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 399004
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 360654
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 53854
+        },
+        {
+          "category": "MAIN",
+          "channelId": 164
+        },
+        {
+          "category": "NATIONAL",
+          "channelId": 165
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 523259
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 64776384
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 3874283
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 32065370
+        },
+        {
+          "category": "LESSONS",
+          "channelId": 168
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 36226347
+        },
+        {
+          "category": "NATIONAL",
+          "channelId": 171
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 172
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 454238
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 256353
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 32734202
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 177
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 49309847
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 33442920
+        },
+        {
+          "category": "NATIONAL",
+          "channelId": 95298
+        },
+        {
+          "category": "LESSONS",
+          "channelId": 190
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 441219
+        },
+        {
+          "category": "LESSONS",
+          "channelId": 57163172
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 447358
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 551671
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 2018942
+        },
+        {
+          "category": "NATIONAL",
+          "channelId": 69229
+        },
+        {
+          "category": "NATIONAL",
+          "channelId": 199
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 241037
+        },
+        {
+          "category": "NATIONAL",
+          "channelId": 201
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 26298334
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 409785
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 210
+        },
+        {
+          "category": "NATIONAL",
+          "channelId": 125232
+        },
+        {
+          "category": "LESSONS",
+          "channelId": 212
+        },
+        {
+          "category": "LESSONS",
+          "channelId": 422830
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 14020
+        },
+        {
+          "category": "LESSONS",
+          "channelId": 1130010
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 45229444
+        },
+        {
+          "category": "LESSONS",
+          "channelId": 1130012
+        },
+        {
+          "category": "MAIN",
+          "channelId": 1939966
+        },
+        {
+          "category": "NATIONAL",
+          "channelId": 226
+        },
+        {
+          "category": "TOURNAMENT",
+          "channelId": 101475
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 3078971
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 54691
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 55441301
+        },
+        {
+          "category": "TEMPORARY",
+          "channelId": 73442793
+        },
+        {
+          "category": "LESSONS",
+          "channelId": 49046824
+        },
+        {
+          "category": "LESSONS",
+          "channelId": 40621331
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 1269629
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 32547893
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 57007
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 52201504
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 45981903
+        },
+        {
+          "category": "NATIONAL",
+          "channelId": 253
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 61616
+        },
+        {
+          "category": "MAIN",
+          "channelId": 257
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 2279014
+        },
+        {
+          "category": "LESSONS",
+          "channelId": 2784468
+        },
+        {
+          "category": "NATIONAL",
+          "channelId": 40343692
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 6120153
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 478101
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 415209
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 51652
+        },
+        {
+          "category": "NATIONAL",
+          "channelId": 263
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 30485446
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 399873
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 3627409
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 23670654
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 19613992
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 30349693
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 400644
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 104583
+        },
+        {
+          "category": "NATIONAL",
+          "channelId": 272
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 486550
+        },
+        {
+          "category": "LESSONS",
+          "channelId": 396811
+        },
+        {
+          "category": "NATIONAL",
+          "channelId": 273
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 7608148
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 17152
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 64417541
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 565558
+        },
+        {
+          "category": "NATIONAL",
+          "channelId": 283
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 82352
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 284
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 285
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 24999118
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 4431249
+        },
+        {
+          "category": "MAIN",
+          "channelId": 100000
+        },
+        {
+          "category": "LESSONS",
+          "channelId": 5145327
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 143720
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 32504218
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 23279510
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 410638
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 153694
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 11912572
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 37571793
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 37116
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 6438
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 398376
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 21370461
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 420624
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 196661
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 45771803
+        },
+        {
+          "category": "TOURNAMENT",
+          "channelId": 291007
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 31762
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 300979
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 181327
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 49201835
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 41272592
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 441348
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 56668585
+        },
+        {
+          "category": "LESSONS",
+          "channelId": 36374
+        },
+        {
+          "category": "TOURNAMENT",
+          "channelId": 326
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 103107
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 47118
+        },
+        {
+          "category": "LESSONS",
+          "channelId": 333
+        },
+        {
+          "category": "NATIONAL",
+          "channelId": 33090248
+        },
+        {
+          "category": "NATIONAL",
+          "channelId": 1811223
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 14147
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 39009203
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 351
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 354
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 3259338
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 360
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 45426709
+        },
+        {
+          "category": "TOURNAMENT",
+          "channelId": 3270860
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 3537778
+        },
+        {
+          "category": "NATIONAL",
+          "channelId": 376
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 35839986
+        },
+        {
+          "category": "TEMPORARY",
+          "channelId": 73444464
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 380
+        },
+        {
+          "category": "LESSONS",
+          "channelId": 41370069
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 390
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 2822952
+        },
+        {
+          "category": "NATIONAL",
+          "channelId": 393
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 87065
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 33375
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 12667
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 3647481
+        },
+        {
+          "category": "TEMPORARY",
+          "channelId": 73439113
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 50253
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 398
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 51671655
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 36450
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 24811318
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 479013
+        },
+        {
+          "category": "TEMPORARY",
+          "channelId": 73444491
+        },
+        {
+          "category": "TOURNAMENT",
+          "channelId": 406
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 250449
+        },
+        {
+          "category": "MAIN",
+          "channelId": 407
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 77110
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 410
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 471351
+        },
+        {
+          "category": "LESSONS",
+          "channelId": 441439
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 28412396
+        },
+        {
+          "category": "LESSONS",
+          "channelId": 50934585
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 331760
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 362443
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 10637179
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 24967
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 424
+        },
+        {
+          "category": "LESSONS",
+          "channelId": 27623164
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 1354948
+        },
+        {
+          "category": "NATIONAL",
+          "channelId": 426
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 49084592
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 42203836
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 38783
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 35708119
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 4669165
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 137729
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 91710
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 1533670
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 535038
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 306472
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 4277
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 2272300
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 446
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 498230
+        },
+        {
+          "category": "TOURNAMENT",
+          "channelId": 300345
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 38032
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 351736
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 3002492
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 457
+        },
+        {
+          "category": "LESSONS",
+          "channelId": 1225359
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 176871
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 18103
+        },
+        {
+          "category": "NATIONAL",
+          "channelId": 63388412
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 14600309
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 465
+        },
+        {
+          "category": "LESSONS",
+          "channelId": 466
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 161538
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 30977298
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 2082108
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 37084921
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 538907
+        },
+        {
+          "category": "LESSONS",
+          "channelId": 53121360
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 32452245
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 56612750
+        },
+        {
+          "category": "MAIN",
+          "channelId": 8036342
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 2640498
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 46815865
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 166930
+        },
+        {
+          "category": "TEMPORARY",
+          "channelId": 73439210
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 494
+        },
+        {
+          "category": "LESSONS",
+          "channelId": 87166
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 495
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 542000
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 27957649
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 17202777
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 53639128
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 99466
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 44961299
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 29434922
+        },
+        {
+          "category": "NATIONAL",
+          "channelId": 82599
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 587290
+        },
+        {
+          "category": "MAIN",
+          "channelId": 13689193
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 302742
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 61139
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 286638
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 308884
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 21262
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 10502320
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 176201
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 23889543
+        },
+        {
+          "category": "LESSONS",
+          "channelId": 25519421
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 407086
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 71817090
+        },
+        {
+          "category": "TOURNAMENT",
+          "channelId": 535178
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 10891983
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 503737
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 27436
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 13807359
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 140955
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 2912131
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 215360
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 413247
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 209226
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 33545349
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 117956
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 523699
+        },
+        {
+          "category": "NATIONAL",
+          "channelId": 11074552
+        },
+        {
+          "category": "LESSONS",
+          "channelId": 6793158
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 66415138
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 258321
+        },
+        {
+          "category": "LESSONS",
+          "channelId": 470780
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 29714192
+        },
+        {
+          "category": "LESSONS",
+          "channelId": 20583069
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 60574450
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 279050
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 549802
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 522959
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 60462
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 29183453
+        },
+        {
+          "category": "LESSONS",
+          "channelId": 95746
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 41252201
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 292869
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 825167
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 12854800
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 941756
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 404856
+        },
+        {
+          "category": "LESSONS",
+          "channelId": 35930
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 66428218
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 59708
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 496898
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 154816
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 39920706
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 64110353
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 1875974
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 70056139
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 38116725
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 44298748
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 63128599
+        },
+        {
+          "category": "NATIONAL",
+          "channelId": 24280817
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 3494351
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 177843
+        },
+        {
+          "category": "LESSONS",
+          "channelId": 48989
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 369596
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 401044
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 36722
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 395682
+        },
+        {
+          "category": "TEMPORARY",
+          "channelId": 73444763
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 1658168
+        },
+        {
+          "category": "LESSONS",
+          "channelId": 182461
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 5716369
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 335097
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 338171
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 66480422
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 62241216
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 476240
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 32118834
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 98887
+        },
+        {
+          "category": "LESSONS",
+          "channelId": 26769012
+        },
+        {
+          "category": "LESSONS",
+          "channelId": 237718
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 4252197
+        },
+        {
+          "category": "NATIONAL",
+          "channelId": 2547158
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 3700728
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 459387
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 972512
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 66616976
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 33681229
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 3641675
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 253070
+        },
+        {
+          "category": "TOURNAMENT",
+          "channelId": 52563241
+        },
+        {
+          "category": "LESSONS",
+          "channelId": 54658687
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 41386
+        },
+        {
+          "category": "LESSONS",
+          "channelId": 45108007
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 1660525
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 49309638
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 527672
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 434098
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 414157
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 63920224
+        },
+        {
+          "category": "TEMPORARY",
+          "channelId": 73444070
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 36245337
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 65588457
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 23736338
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 535355
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 22773756
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 84363
+        },
+        {
+          "category": "FRIENDLY",
+          "channelId": 56500282
+        },
+        {
+          "category": "CLUBS",
+          "channelId": 41178690
+        }
+      ],
+      "roomCategoryChannelIds": {
+        "NATIONAL": 72139428,
+        "TOURNAMENT": 72139426,
+        "FRIENDLY": 72139427,
+        "TEMPORARY": 72139423,
+        "MAIN": 72139422,
+        "LESSONS": 72139425,
+        "CLUBS": 72139424
+      },
+      "type": "LOGIN_SUCCESS",
+      "you": {
+        "name": "sitsbot",
+        "flags": "c=",
+        "rank": "?"
+      }
+    },
+    {
+      "rooms": [
+        {
+          "name": "Stones in the Shell",
+          "channelId": 35708119
+        }
+      ],
+      "type": "ROOM_NAMES"
+    },
+    {
+      "description": "Stones In The Shell, c\u2019est avant tout une volonté d\u2019être ensemble, de partager, de s\u2019émerveiller.\n\nC\u2019est une communauté de joueuses et joueurs passionnés éparpillés aux points cardinaux de la francophonie et d\u2019ailleurs, souhaitant se réunir et construire au-delà des limites physiques.\n\nDébutant ou confirmé, toujours passionné, nous créons un endroit où apprendre et progresser signifie d\u2019abord s\u2019entraider et échanger.\n\nSITS, c\u2019est  un club dynamique avec de la cohésion entre les membres, des ateliers, des ressources théoriques, un partenariat avec des pédagogues renommés, des tournois permanents et des groupes d\u2019études.\n\nNous pensons que chaque mot d\u2019un membre mérite d\u2019être écouté, Comme chaque coup a des raisons d\u2019être joué.\n\nOù poserez-vous la prochaine pierre ?\nServeur Discord : https://discord.gg/Ks5AF8Up3B\n\n\n\n\n",
+      "owners": [
+        {
+          "name": "celidan",
+          "flags": "a=",
+          "rank": "2d?"
+        }
+      ],
+      "type": "ROOM_DESC",
+      "channelId": 35708119
+    },
+    {
+      "type": "ROOM_JOIN",
+      "channelId": 35708119,
+      "users": [
+        {
+          "name": "fuseki3",
+          "flags": "cp"
+        },
+        {
+          "name": "Whithak",
+          "flags": "cp=",
+          "rank": "2d?"
+        },
+        {
+          "name": "reunited",
+          "flags": "csa"
+        },
+        {
+          "name": "sitsbot",
+          "flags": "c=",
+          "rank": "?"
+        }
+      ]
+    },
+    {
+      "type": "JOIN_COMPLETE",
+      "channelId": 35708119
+    },
+    {
+      "estimatedRank": "26k",
+      "fastOk": true,
+      "unrankedOk": true,
+      "humanOk": true,
+      "mediumOk": true,
+      "type": "AUTOMATCH_PREFS",
+      "maxHandicap": 6,
+      "freeOk": true,
+      "rankedOk": true,
+      "blitzOk": false,
+      "robotOk": true
+    },
+    {
+      "playbacks": [],
+      "type": "PLAYBACK_ADD"
+    }
+  ]
+}

@@ -6,11 +6,11 @@ public class Game {
     private String whiteRank;
     private String black;
     private String blackRank;
-
     private float komi = 7.5f;
     private int size = 19;
-
     private int handicap = 0;
+    private GoServerType serverType = GoServerType.KGS;
+    private String serverName;
 
     public Game(String id) {
         this.id = id;
@@ -86,6 +86,35 @@ public class Game {
 
     public void setHandicap(int handicap) {
         this.handicap = handicap;
+    }
+
+    public GoServerType getServerType() {
+        return serverType;
+    }
+
+    public void setServerType(GoServerType serverType) {
+        this.serverType = serverType;
+    }
+
+    public String getServerName() {
+        return serverName;
+    }
+
+    public void setServerName(String serverName) {
+        this.serverName = serverName;
+    }
+
+    public String getTitle() {
+        return String.format("%s[%s] vs %s[%s]",
+                getWhite(),
+                getWhiteRank(),
+                getBlack(),
+                getBlackRank()
+        );
+    }
+
+    public String getGobanSize() {
+        return String.format("%dx%d", getSize(), getSize());
     }
 
     @Override

@@ -13,6 +13,7 @@ discord:
   token: ${DISCORD_TOKEN}
   application-id: ${DISCORD_APPLICATION_ID}
   guild-id: ${DISCORD_GUILD_ID}
+  game-announcement-channel-id: ${DISCORD_GAME_ANNOUNCEMENT_CHANNEL_ID}
 
 goserver:
   kgs:

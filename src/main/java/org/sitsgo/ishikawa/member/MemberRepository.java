@@ -1,4 +1,4 @@
-package org.sitsgo.ishikawa;
+package org.sitsgo.ishikawa.member;
 
 import org.springframework.data.repository.CrudRepository;
 
