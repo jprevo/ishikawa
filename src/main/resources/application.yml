@@ -1,0 +1,22 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.community.dialect.SQLiteDialect
+  datasource:
+    url: ${DATABASE_URL}
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
+    driver-class-name: org.sqlite.JDBC
+
+discord:
+  token: ${DISCORD_TOKEN}
+  application-id: ${DISCORD_APPLICATION_ID}
+  guild-id: ${DISCORD_GUILD_ID}
+
+goserver:
+  kgs:
+    url: https://www.gokgs.com/json/access
+    username: ${KGS_BOT_USERNAME}
+    password: ${KGS_BOT_PASSWORD}
+    channel-id: ${KGS_CHANNEL_ID}
