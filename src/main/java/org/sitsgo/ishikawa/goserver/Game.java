@@ -6,11 +6,12 @@ public class Game {
     private String whiteRank;
     private String black;
     private String blackRank;
-    private float komi = 7.5f;
+    private double komi = 7.5;
     private int size = 19;
     private int handicap = 0;
     private GoServerType serverType = GoServerType.KGS;
     private String serverName;
+    private String url;
 
     public Game(String id) {
         this.id = id;
@@ -64,7 +65,7 @@ public class Game {
         this.blackRank = blackRank;
     }
 
-    public float getKomi() {
+    public double getKomi() {
         return komi;
     }
 
@@ -72,7 +73,7 @@ public class Game {
         return size;
     }
 
-    public void setKomi(float komi) {
+    public void setKomi(double komi) {
         this.komi = komi;
     }
 
@@ -115,6 +116,18 @@ public class Game {
 
     public String getGobanSize() {
         return String.format("%dx%d", getSize(), getSize());
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public boolean hasUrl() {
+        return !url.isEmpty();
     }
 
     @Override

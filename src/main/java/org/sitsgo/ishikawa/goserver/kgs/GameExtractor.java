@@ -37,7 +37,7 @@ public class GameExtractor {
             Game game = new Game(record.getInt("channelId"));
 
             if (record.has("komi")) {
-                game.setKomi((float) record.getDouble("komi"));
+                game.setKomi(record.getDouble("komi"));
             }
 
             if (record.has("handicap")) {

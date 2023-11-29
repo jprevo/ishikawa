@@ -69,16 +69,21 @@ public class DiscordBot {
     }
 
     private EmbedCreateSpec createGameAnnouncementEmbed(Game game) {
-        return EmbedCreateSpec.builder()
+        EmbedCreateSpec.Builder embed = EmbedCreateSpec.builder()
                 .color(Color.RED)
-                .title(game.getTitle())
-                .description("⚔\uFE0F Une partie vient de commencer !")
+                .title("⚔️ " + game.getTitle())
+                .description("Une partie vient de commencer !")
                 .addField("Serveur", game.getServerName(), false)
                 .addField("Komi", String.valueOf(game.getKomi()), true)
                 .addField("Handicap", String.valueOf(game.getHandicap()), true)
                 .addField("Goban", game.getGobanSize(), true)
-                .timestamp(Instant.now())
-                .build();
+                .timestamp(Instant.now());
+
+        if (game.hasUrl()) {
+            embed.url(game.getUrl());
+        }
+
+        return embed.build();
     }
 
     public void registerCommands() {

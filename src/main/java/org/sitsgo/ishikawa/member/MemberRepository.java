@@ -9,4 +9,6 @@ public interface MemberRepository extends CrudRepository<Member, Long> {
     List<Member> findByLastName(String lastName);
 
     Member findById(long id);
+
+    List<Member> findByOgsIdIsNotNull();
 }
