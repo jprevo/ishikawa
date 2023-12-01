@@ -12,7 +12,7 @@ import java.net.URL;
 
 @Component
 public class OgsApi {
-    JSONObject getPlayer(int id) throws GoServerException {
+    public JSONObject getPlayer(int id) throws GoServerException {
         String response = "{}";
 
         try {
@@ -29,7 +29,7 @@ public class OgsApi {
             if (connection.getResponseCode() != HttpURLConnection.HTTP_OK) {
                 connection.disconnect();
 
-                throw new GoServerException("Unable to get data from KGS");
+                throw new GoServerException("Unable to get data from OGS");
             }
 
             response = getDataResponse(connection);

@@ -10,9 +10,11 @@ import discord4j.discordjson.json.ApplicationCommandRequest;
 import org.reactivestreams.Publisher;
 import org.sitsgo.ishikawa.discord.command.account.AccountDeleteCommand;
 import org.sitsgo.ishikawa.discord.command.account.AccountFFGCommand;
-import org.sitsgo.ishikawa.discord.command.account.AccountKGSCommand;
+import org.sitsgo.ishikawa.discord.command.account.AccountOGSCommand;
+import org.sitsgo.ishikawa.discord.command.account.AccountServerUsernameCommand;
 import org.sitsgo.ishikawa.member.Member;
 import org.sitsgo.ishikawa.member.MemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 
@@ -22,6 +24,9 @@ import java.util.List;
 public class AccountCommand implements DiscordCommand, DiscordMenuCommand {
 
     private final MemberRepository memberRepository;
+
+    @Autowired
+    List<AccountServerUsernameCommand> usernameCommands;
 
     public AccountCommand(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
@@ -74,9 +79,16 @@ public class AccountCommand implements DiscordCommand, DiscordMenuCommand {
             return event.presentModal(modal);
         }
 
-        if (event.getValues().contains("kgs")) {
-            InteractionPresentModalSpec modal = AccountKGSCommand.getModal(member);
+        if (event.getValues().contains("ogs")) {
+            InteractionPresentModalSpec modal = AccountOGSCommand.getModal(member);
             return event.presentModal(modal);
+        }
+
+        for (AccountServerUsernameCommand usernameCommand : usernameCommands) {
+            if (event.getValues().contains(usernameCommand.getServerId())) {
+                InteractionPresentModalSpec modal = usernameCommand.getModal(member);
+                return event.presentModal(modal);
+            }
         }
 
         if (event.getValues().contains("delete")) {

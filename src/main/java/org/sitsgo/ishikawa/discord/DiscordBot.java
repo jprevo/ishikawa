@@ -44,6 +44,9 @@ public class DiscordBot {
     @Value("${discord.game-announcement-channel-id}")
     private long gameAnnouncementChannelId;
 
+    @Value("${discord.member-role-id}")
+    private Snowflake discordMemberRoleId;
+
     @Autowired
     private List<DiscordCommand> commands;
 
@@ -206,9 +209,12 @@ public class DiscordBot {
             memberRepository.save(member);
         }
 
+        boolean isInClub = discordMember.getRoleIds().contains(discordMemberRoleId);
+
         member.setDiscordUsername(discordMember.getUsername());
         member.setDiscordDisplayName(discordMember.getDisplayName());
         member.setDiscordAvatarUrl(discordMember.getAvatarUrl());
+        member.setInClub(isInClub);
 
         memberRepository.save(member);
 

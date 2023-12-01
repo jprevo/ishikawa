@@ -48,10 +48,10 @@ public class AccountDeleteCommand implements DiscordButtonCommand {
     }
 
     public static InteractionApplicationCommandCallbackReplyMono getDeleteConfirmation(SelectMenuInteractionEvent event, Member member) {
-        String warningMessage = "Conformément à la loi informatique et libertés et à la loi européenne sur les données " +
+        String warningMessage = "Conformément à la loi informatique et libertés et à la loi européenne sur la protection des données " +
                 "personnelles, vous pouvez supprimer les données associées à votre compte SITS. Seules les informations " +
                 "stockées sur ce bot Discord seront supprimées, et non vos informations d'adhésion à SITS. Cette suppression sera " +
-                "immédiate et irreversible, mais vous pourrez créer de nouveau un compte plus tard.";
+                "immédiate et irreversible, mais vous pourrez recréer un compte ultérieurement.";
 
         Button confirm = Button.danger("delete-account", "Supprimer mon compte");
         Button cancel = Button.primary("cancel-delete-account", "Annuler");

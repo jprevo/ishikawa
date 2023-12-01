@@ -4,21 +4,19 @@ import org.sitsgo.ishikawa.member.Member;
 import org.springframework.stereotype.Component;
 
 @Component
-public class AccountKGSCommand extends AccountServerUsernameCommand {
-
+public class AccountOSRCommand extends AccountServerUsernameCommand {
     @Override
     public String getServerId() {
-        return "kgs";
+        return "osr";
     }
 
     @Override
     public String getServerName() {
-        return "KGS";
+        return "Open Study Room";
     }
 
     @Override
     public void updateName(Member member, String name) {
-        member.setKgsUsername(name);
+        member.setOsrUsername(name);
     }
-    
 }

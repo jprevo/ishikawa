@@ -16,6 +16,7 @@ discord:
   application-id: ${DISCORD_APPLICATION_ID}
   guild-id: ${DISCORD_GUILD_ID}
   game-announcement-channel-id: ${DISCORD_GAME_ANNOUNCEMENT_CHANNEL_ID}
+  member-role-id: ${DISCORD_MEMBER_ROLE_ID}
 
 goserver:
   kgs:

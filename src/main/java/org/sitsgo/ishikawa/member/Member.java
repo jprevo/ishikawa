@@ -27,11 +27,8 @@ public class Member {
     private String ffgRankHybrid;
     private String ffgRankMain;
     private Boolean anonymous = false;
-    private String egfKey;
-    private String egfName;
-    private String efgRank;
     private String osrUsername;
-    private Boolean isMember;
+    private Boolean isInClub;
 
     public Member() {
     }
@@ -133,30 +130,6 @@ public class Member {
         this.anonymous = anonymous;
     }
 
-    public String getEgfKey() {
-        return egfKey;
-    }
-
-    public void setEgfKey(String egfKey) {
-        this.egfKey = egfKey;
-    }
-
-    public String getEgfName() {
-        return egfName;
-    }
-
-    public void setEgfName(String egfName) {
-        this.egfName = egfName;
-    }
-
-    public String getEfgRank() {
-        return efgRank;
-    }
-
-    public void setEfgRank(String efgRank) {
-        this.efgRank = efgRank;
-    }
-
     public String getOsrUsername() {
         return osrUsername;
     }
@@ -189,12 +162,12 @@ public class Member {
         this.discordDiscriminator = discordDiscriminator;
     }
 
-    public Boolean getMember() {
-        return isMember;
+    public Boolean getInClub() {
+        return isInClub;
     }
 
-    public void setMember(Boolean member) {
-        isMember = member;
+    public void setInClub(Boolean inClub) {
+        isInClub = inClub;
     }
 
     public String getDiscordDisplayName() {

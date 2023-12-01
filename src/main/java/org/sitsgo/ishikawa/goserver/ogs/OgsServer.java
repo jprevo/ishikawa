@@ -13,6 +13,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -142,5 +144,29 @@ public class OgsServer implements GoServer {
         return dan + "d";
     }
 
+    public boolean isProfileUrlValid(String profileUrl) {
+        try {
+            URL url = new URL(profileUrl);
+
+            if (!url.getHost().equals("online-go.com")) {
+                return false;
+            }
+
+            return url.getPath().contains("user/view/");
+        } catch (MalformedURLException e) {
+            return false;
+        }
+    }
+
+    public int extractIdFromProfileUrl(String profileUrl) throws MalformedURLException {
+        String[] parts = profileUrl.split("/");
+        String idInUrl = parts[parts.length - 1];
+
+        if (!idInUrl.matches("^[0-9]+$")) {
+            throw new MalformedURLException("Cannot extract id from url");
+        }
+
+        return Integer.parseInt(idInUrl);
+    }
 
 }
