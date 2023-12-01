@@ -141,7 +141,10 @@ public class DiscordBot {
 
             for (DiscordButtonCommand command : buttonCommands) {
                 if (command.getButtonIds().contains(requestedButtonId)) {
-                    return command.onButtonClick(event, member);
+                    Publisher<Void> result = command.onButtonClick(event, member);
+                    memberRepository.save(member);
+
+                    return result;
                 }
             }
 

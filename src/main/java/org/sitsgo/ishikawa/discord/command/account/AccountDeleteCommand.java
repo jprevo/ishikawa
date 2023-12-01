@@ -36,12 +36,14 @@ public class AccountDeleteCommand implements DiscordButtonCommand {
                 memberRepository.delete(member);
                 event.deleteReply();
 
-                return event.reply(":white_check_mark: Votre compte et toutes vos informations ont bien été supprimées.");
+                return event.reply(":white_check_mark: Votre compte et toutes vos informations ont bien été supprimées.")
+                        .withEphemeral(true);
 
             case "cancel-delete-account":
                 event.deleteReply();
 
-                return event.reply(":ballot_box_with_check: Opération annulée, votre compte n'a pas été supprimé.");
+                return event.reply(":ballot_box_with_check: Opération annulée, votre compte n'a pas été supprimé.")
+                        .withEphemeral(true);
         }
 
         return Mono.empty();

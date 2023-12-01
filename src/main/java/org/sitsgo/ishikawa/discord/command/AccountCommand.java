@@ -8,12 +8,8 @@ import discord4j.core.spec.InteractionApplicationCommandCallbackReplyMono;
 import discord4j.core.spec.InteractionPresentModalSpec;
 import discord4j.discordjson.json.ApplicationCommandRequest;
 import org.reactivestreams.Publisher;
-import org.sitsgo.ishikawa.discord.command.account.AccountDeleteCommand;
-import org.sitsgo.ishikawa.discord.command.account.AccountFFGCommand;
-import org.sitsgo.ishikawa.discord.command.account.AccountOGSCommand;
-import org.sitsgo.ishikawa.discord.command.account.AccountServerUsernameCommand;
+import org.sitsgo.ishikawa.discord.command.account.*;
 import org.sitsgo.ishikawa.member.Member;
-import org.sitsgo.ishikawa.member.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
@@ -23,14 +19,8 @@ import java.util.List;
 @Component
 public class AccountCommand implements DiscordCommand, DiscordMenuCommand {
 
-    private final MemberRepository memberRepository;
-
     @Autowired
     List<AccountServerUsernameCommand> usernameCommands;
-
-    public AccountCommand(MemberRepository memberRepository) {
-        this.memberRepository = memberRepository;
-    }
 
     @Override
     public String getName() {
@@ -89,6 +79,10 @@ public class AccountCommand implements DiscordCommand, DiscordMenuCommand {
                 InteractionPresentModalSpec modal = usernameCommand.getModal(member);
                 return event.presentModal(modal);
             }
+        }
+
+        if (event.getValues().contains("anon")) {
+            return AccountAnonymousCommand.getAnonymousConfirmation(event, member);
         }
 
         if (event.getValues().contains("delete")) {
