@@ -3,15 +3,14 @@ package org.sitsgo.ishikawa.discord;
 import discord4j.common.util.Snowflake;
 import discord4j.core.DiscordClientBuilder;
 import discord4j.core.GatewayDiscordClient;
-import discord4j.core.event.domain.interaction.ChatInputInteractionEvent;
-import discord4j.core.event.domain.interaction.DeferrableInteractionEvent;
-import discord4j.core.event.domain.interaction.ModalSubmitInteractionEvent;
-import discord4j.core.event.domain.interaction.SelectMenuInteractionEvent;
+import discord4j.core.event.domain.interaction.*;
 import discord4j.core.object.entity.channel.GuildMessageChannel;
 import discord4j.core.spec.EmbedCreateSpec;
+import discord4j.core.spec.InteractionApplicationCommandCallbackReplyMono;
 import discord4j.discordjson.json.ApplicationCommandRequest;
 import discord4j.rest.util.Color;
 import org.reactivestreams.Publisher;
+import org.sitsgo.ishikawa.discord.command.DiscordButtonCommand;
 import org.sitsgo.ishikawa.discord.command.DiscordCommand;
 import org.sitsgo.ishikawa.discord.command.DiscordMenuCommand;
 import org.sitsgo.ishikawa.discord.command.DiscordModalCommand;
@@ -51,6 +50,9 @@ public class DiscordBot {
     @Autowired
     private List<DiscordModalCommand> modalCommands;
 
+    @Autowired
+    private List<DiscordButtonCommand> buttonCommands;
+
     private final MemberRepository memberRepository;
 
     public DiscordBot(MemberRepository memberRepository) {
@@ -67,6 +69,7 @@ public class DiscordBot {
             initRouter();
             initMenu();
             initModal();
+            initButton();
 
             log.info("Discord Bot successfully logged in");
         } else {
@@ -89,8 +92,7 @@ public class DiscordBot {
                 }
             }
 
-            return event.reply("Command not found")
-                    .withEphemeral(true);
+            return interactionNotFound(event);
         }).subscribe();
     }
 
@@ -107,8 +109,7 @@ public class DiscordBot {
                 }
             }
 
-            return event.reply("Commande introuvable.")
-                    .withEphemeral(true);
+            return interactionNotFound(event);
         }).subscribe();
     }
 
@@ -126,9 +127,28 @@ public class DiscordBot {
                 }
             }
 
-            return event.reply("Commande introuvable.")
-                    .withEphemeral(true);
+            return interactionNotFound(event);
         }).subscribe();
+    }
+
+    private void initButton() {
+        client.on(ButtonInteractionEvent.class, event -> {
+            String requestedButtonId = event.getCustomId();
+            Member member = getMemberForEvent(event);
+
+            for (DiscordButtonCommand command : buttonCommands) {
+                if (command.getButtonIds().contains(requestedButtonId)) {
+                    return command.onButtonClick(event, member);
+                }
+            }
+
+            return interactionNotFound(event);
+        }).subscribe();
+    }
+
+    private InteractionApplicationCommandCallbackReplyMono interactionNotFound(DeferrableInteractionEvent event) {
+        return event.reply("Une erreur est survenue : impossible de trouver cette commande.")
+                .withEphemeral(true);
     }
 
     public void announceGame(Game game) {
