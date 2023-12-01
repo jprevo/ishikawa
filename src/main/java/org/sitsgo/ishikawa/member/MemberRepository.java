@@ -9,5 +9,7 @@ public interface MemberRepository extends CrudRepository<Member, Long> {
 
     Member findByDiscordId(long id);
 
+    Member findByFfgId(int id);
+
     List<Member> findByOgsIdIsNotNull();
 }

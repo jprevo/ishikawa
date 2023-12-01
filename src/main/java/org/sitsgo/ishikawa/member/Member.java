@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import org.sitsgo.ishikawa.gowebsite.ffg.FFGProfile;
 
 @Entity
 public class Member {
@@ -116,6 +117,12 @@ public class Member {
 
     public void setFfgRankMain(String ffgRankMain) {
         this.ffgRankMain = ffgRankMain;
+    }
+
+    public void updateFromFFGProfile(FFGProfile profile) {
+        this.setFfgName(profile.getName());
+        this.setFfgRankMain(profile.getMainRank());
+        this.setFfgRankHybrid(profile.getHybridRank());
     }
 
     public Boolean getAnonymous() {

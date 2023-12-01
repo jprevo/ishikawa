@@ -4,15 +4,20 @@ import discord4j.core.event.domain.interaction.ChatInputInteractionEvent;
 import discord4j.core.event.domain.interaction.SelectMenuInteractionEvent;
 import discord4j.core.object.component.ActionRow;
 import discord4j.core.object.component.SelectMenu;
+import discord4j.core.object.component.TextInput;
 import discord4j.core.spec.InteractionApplicationCommandCallbackReplyMono;
+import discord4j.core.spec.InteractionPresentModalSpec;
 import discord4j.discordjson.json.ApplicationCommandRequest;
+import org.reactivestreams.Publisher;
 import org.sitsgo.ishikawa.member.Member;
 import org.springframework.stereotype.Component;
+import reactor.core.publisher.Mono;
 
 import java.util.List;
 
 @Component
-public class AccountCommand implements DiscordMenuCommand {
+public class AccountCommand implements DiscordCommand, DiscordMenuCommand {
+
     @Override
     public String getName() {
         return "compte";
@@ -31,8 +36,10 @@ public class AccountCommand implements DiscordMenuCommand {
                 SelectMenu.Option.of("Changer la visibilité de mon profil", "anon")
         ).withPlaceholder("Choisissez une action de compte...");
 
-        return event.reply("Bienvenue dans la configuration de votre compte Stones in the Shell.\n" +
-                        "Que souhaitez-vous faire ?")
+        String welcomeMessage = String.format("Bienvenue %s dans la configuration de votre compte Stones in the Shell.\n" +
+                "Que souhaitez-vous faire ?", member.getDiscordDisplayName());
+
+        return event.reply(welcomeMessage)
                 .withComponents(ActionRow.of(select))
                 .withEphemeral(true);
     }
@@ -51,11 +58,22 @@ public class AccountCommand implements DiscordMenuCommand {
     }
 
     @Override
-    public InteractionApplicationCommandCallbackReplyMono onChange(SelectMenuInteractionEvent event, Member member) {
+    public Publisher<Void> onMenuChange(SelectMenuInteractionEvent event, Member member) {
         if (event.getValues().contains("ffg")) {
-            return event.reply("Indiquez votre compte FFG : ").withEphemeral(true);
+            TextInput urlInput = TextInput.small("ffg-modal-url", "URL de votre profil FFG")
+                    .required(true)
+                    .placeholder("https://ffg.jeudego.org/php/affichePersonne.php?id=...");
+
+            InteractionPresentModalSpec modal = InteractionPresentModalSpec
+                    .builder()
+                    .customId("ffg-modal")
+                    .title("URL de votre profil FFG")
+                    .addComponent(ActionRow.of(urlInput))
+                    .build();
+
+            return event.presentModal(modal);
         }
 
-        return null;
+        return Mono.empty();
     }
 }

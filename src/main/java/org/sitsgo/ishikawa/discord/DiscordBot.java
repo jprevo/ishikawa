@@ -5,6 +5,7 @@ import discord4j.core.DiscordClientBuilder;
 import discord4j.core.GatewayDiscordClient;
 import discord4j.core.event.domain.interaction.ChatInputInteractionEvent;
 import discord4j.core.event.domain.interaction.DeferrableInteractionEvent;
+import discord4j.core.event.domain.interaction.ModalSubmitInteractionEvent;
 import discord4j.core.event.domain.interaction.SelectMenuInteractionEvent;
 import discord4j.core.object.entity.channel.GuildMessageChannel;
 import discord4j.core.spec.EmbedCreateSpec;
@@ -12,6 +13,7 @@ import discord4j.discordjson.json.ApplicationCommandRequest;
 import discord4j.rest.util.Color;
 import org.sitsgo.ishikawa.discord.command.DiscordCommand;
 import org.sitsgo.ishikawa.discord.command.DiscordMenuCommand;
+import org.sitsgo.ishikawa.discord.command.DiscordModalCommand;
 import org.sitsgo.ishikawa.goserver.Game;
 import org.sitsgo.ishikawa.member.Member;
 import org.sitsgo.ishikawa.member.MemberRepository;
@@ -45,6 +47,9 @@ public class DiscordBot {
     @Autowired
     private List<DiscordCommand> commands;
 
+    @Autowired
+    private List<DiscordModalCommand> modalCommands;
+
     private final MemberRepository memberRepository;
 
     public DiscordBot(MemberRepository memberRepository) {
@@ -60,6 +65,7 @@ public class DiscordBot {
         if (client != null) {
             initRouter();
             initMenu();
+            initModal();
 
             log.info("Discord Bot successfully logged in");
         } else {
@@ -95,8 +101,24 @@ public class DiscordBot {
             for (DiscordCommand command : commands) {
                 if (command instanceof DiscordMenuCommand menuCommand) {
                     if (menuCommand.getMenuIds().contains(requestedMenuId)) {
-                        return menuCommand.onChange(event, member);
+                        return menuCommand.onMenuChange(event, member);
                     }
+                }
+            }
+
+            return event.reply("Commande introuvable.")
+                    .withEphemeral(true);
+        }).subscribe();
+    }
+
+    private void initModal() {
+        client.on(ModalSubmitInteractionEvent.class, event -> {
+            String requestedModalId = event.getCustomId();
+            Member member = getMemberForEvent(event);
+
+            for (DiscordModalCommand command : modalCommands) {
+                if (command.getModalIds().contains(requestedModalId)) {
+                    return command.onModalSubmit(event, member);
                 }
             }
 
