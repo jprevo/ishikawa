@@ -4,11 +4,12 @@ import discord4j.core.event.domain.interaction.ChatInputInteractionEvent;
 import discord4j.core.event.domain.interaction.SelectMenuInteractionEvent;
 import discord4j.core.object.component.ActionRow;
 import discord4j.core.object.component.SelectMenu;
-import discord4j.core.object.component.TextInput;
 import discord4j.core.spec.InteractionApplicationCommandCallbackReplyMono;
 import discord4j.core.spec.InteractionPresentModalSpec;
 import discord4j.discordjson.json.ApplicationCommandRequest;
 import org.reactivestreams.Publisher;
+import org.sitsgo.ishikawa.discord.command.account.AccountFFGCommand;
+import org.sitsgo.ishikawa.discord.command.account.AccountKGSCommand;
 import org.sitsgo.ishikawa.member.Member;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
@@ -27,8 +28,8 @@ public class AccountCommand implements DiscordCommand, DiscordMenuCommand {
     public InteractionApplicationCommandCallbackReplyMono run(ChatInputInteractionEvent event, Member member) {
         SelectMenu select = SelectMenu.of("account-menu",
                 SelectMenu.Option.of("Indiquer mon profil FFG (recommandé)", "ffg"),
-                SelectMenu.Option.of("Indiquer mon profil OSR (recommandé)", "osr"),
                 SelectMenu.Option.of("Indiquer mon pseudo KGS (recommandé)", "kgs"),
+                SelectMenu.Option.of("Indiquer mon profil OSR (recommandé)", "osr"),
                 SelectMenu.Option.of("Indiquer mon profil EGF", "egf"),
                 SelectMenu.Option.of("Indiquer mon profil OGS", "ogs"),
                 SelectMenu.Option.of("Indiquer mon pseudo Fox", "fox"),
@@ -60,16 +61,13 @@ public class AccountCommand implements DiscordCommand, DiscordMenuCommand {
     @Override
     public Publisher<Void> onMenuChange(SelectMenuInteractionEvent event, Member member) {
         if (event.getValues().contains("ffg")) {
-            TextInput urlInput = TextInput.small("ffg-modal-url", "URL de votre profil FFG")
-                    .required(true)
-                    .placeholder("https://ffg.jeudego.org/php/affichePersonne.php?id=...");
+            InteractionPresentModalSpec modal = AccountFFGCommand.getModal(member);
 
-            InteractionPresentModalSpec modal = InteractionPresentModalSpec
-                    .builder()
-                    .customId("ffg-modal")
-                    .title("URL de votre profil FFG")
-                    .addComponent(ActionRow.of(urlInput))
-                    .build();
+            return event.presentModal(modal);
+        }
+
+        if (event.getValues().contains("kgs")) {
+            InteractionPresentModalSpec modal = AccountKGSCommand.getModal(member);
 
             return event.presentModal(modal);
         }

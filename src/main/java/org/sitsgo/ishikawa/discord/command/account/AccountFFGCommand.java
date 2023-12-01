@@ -1,14 +1,15 @@
 package org.sitsgo.ishikawa.discord.command.account;
 
 import discord4j.core.event.domain.interaction.ModalSubmitInteractionEvent;
+import discord4j.core.object.component.ActionRow;
 import discord4j.core.object.component.TextInput;
+import discord4j.core.spec.InteractionPresentModalSpec;
 import org.reactivestreams.Publisher;
 import org.sitsgo.ishikawa.discord.command.DiscordModalCommand;
 import org.sitsgo.ishikawa.gowebsite.WebsiteParsingException;
 import org.sitsgo.ishikawa.gowebsite.ffg.FFGProfile;
 import org.sitsgo.ishikawa.gowebsite.ffg.FFGWebsite;
 import org.sitsgo.ishikawa.member.Member;
-import org.sitsgo.ishikawa.member.MemberRepository;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 
@@ -17,12 +18,10 @@ import java.util.List;
 
 @Component
 public class AccountFFGCommand implements DiscordModalCommand {
-    private final MemberRepository memberRepository;
 
     private final FFGWebsite ffgWebsite;
 
-    public AccountFFGCommand(MemberRepository memberRepository, FFGWebsite ffgWebsite) {
-        this.memberRepository = memberRepository;
+    public AccountFFGCommand(FFGWebsite ffgWebsite) {
         this.ffgWebsite = ffgWebsite;
     }
 
@@ -62,13 +61,24 @@ public class AccountFFGCommand implements DiscordModalCommand {
                             .withEphemeral(true);
                 }
 
-                memberRepository.save(member);
-
                 return event.reply("Merci, votre profil FFG a bien été sauvegardé.")
                         .withEphemeral(true);
             }
         }
 
         return Mono.empty();
+    }
+
+    public static InteractionPresentModalSpec getModal(Member member) {
+        TextInput urlInput = TextInput.small("ffg-modal-url", "URL de votre profil FFG")
+                .required(true)
+                .placeholder("https://ffg.jeudego.org/php/affichePersonne.php?id=...");
+
+        return InteractionPresentModalSpec
+                .builder()
+                .customId("ffg-modal")
+                .title("URL de votre profil FFG")
+                .addComponent(ActionRow.of(urlInput))
+                .build();
     }
 }

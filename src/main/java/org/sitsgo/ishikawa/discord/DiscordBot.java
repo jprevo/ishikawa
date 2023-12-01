@@ -11,6 +11,7 @@ import discord4j.core.object.entity.channel.GuildMessageChannel;
 import discord4j.core.spec.EmbedCreateSpec;
 import discord4j.discordjson.json.ApplicationCommandRequest;
 import discord4j.rest.util.Color;
+import org.reactivestreams.Publisher;
 import org.sitsgo.ishikawa.discord.command.DiscordCommand;
 import org.sitsgo.ishikawa.discord.command.DiscordMenuCommand;
 import org.sitsgo.ishikawa.discord.command.DiscordModalCommand;
@@ -118,7 +119,10 @@ public class DiscordBot {
 
             for (DiscordModalCommand command : modalCommands) {
                 if (command.getModalIds().contains(requestedModalId)) {
-                    return command.onModalSubmit(event, member);
+                    Publisher<Void> done = command.onModalSubmit(event, member);
+                    memberRepository.save(member);
+
+                    return done;
                 }
             }
 
