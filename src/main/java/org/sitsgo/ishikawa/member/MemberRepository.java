@@ -14,6 +14,10 @@ public interface MemberRepository extends CrudRepository<Member, Long> {
 
     List<Member> findByOgsIdIsNotNull();
 
+    Member findTopByKgsUsername(String kgsUsername);
+
+    Member findTopByOgsUsername(String ogsUsername);
+
     @Query("SELECT m FROM Member m WHERE (m.discordDisplayName LIKE ?1 OR m.ogsUsername LIKE ?1 OR m.kgsUsername LIKE ?1 OR m.ffgName LIKE ?1 OR m.osrUsername LIKE ?1) AND m.anonymous = false")
     Member search(String name);
 }

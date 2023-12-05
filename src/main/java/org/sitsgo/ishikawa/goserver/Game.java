@@ -127,6 +127,10 @@ public class Game {
     }
 
     public boolean hasUrl() {
+        if (url == null) {
+            return false;
+        }
+
         return !url.isEmpty();
     }
 

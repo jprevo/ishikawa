@@ -52,18 +52,11 @@ public class DiscordController {
 
     @GetMapping("/member-create")
     public String create() {
-        Member onion = new Member();
-        onion.setOgsId(1414486);
+        Member kim = new Member();
+        kim.setOgsId(743310);
+        kim.setInClub(true);
 
-        Member reunited = new Member();
-        reunited.setOgsId(93483);
-
-        Member fom = new Member();
-        fom.setOgsId(389627);
-
-        repo.save(onion);
-        repo.save(reunited);
-        repo.save(fom);
+        repo.save(kim);
 
         return "done";
     }
