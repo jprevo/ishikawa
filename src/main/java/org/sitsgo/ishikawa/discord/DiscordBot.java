@@ -21,11 +21,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Component;
 
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 @Component("bot")
 public class DiscordBot {
@@ -55,6 +57,9 @@ public class DiscordBot {
 
     @Autowired
     private List<DiscordButtonCommand> buttonCommands;
+
+    @Autowired
+    private MessageSource messageSource;
 
     private final MemberRepository memberRepository;
 
@@ -153,7 +158,7 @@ public class DiscordBot {
     }
 
     private InteractionApplicationCommandCallbackReplyMono interactionNotFound(DeferrableInteractionEvent event) {
-        return event.reply("Une erreur est survenue : impossible de trouver cette commande.")
+        return event.reply(messageSource.getMessage("discord.error.notfound", null, Locale.FRANCE))
                 .withEphemeral(true);
     }
 
