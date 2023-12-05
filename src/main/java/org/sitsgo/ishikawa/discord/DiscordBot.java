@@ -237,6 +237,7 @@ public class DiscordBot {
         List<ApplicationCommandRequest> requests = new ArrayList<ApplicationCommandRequest>();
 
         for (DiscordCommand command : commands) {
+            log.info(String.format("Registering command %s", command.getName()));
             requests.add(command.getRequest());
         }
 

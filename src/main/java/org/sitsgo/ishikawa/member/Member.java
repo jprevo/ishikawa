@@ -60,8 +60,16 @@ public class Member {
         this.ogsUsername = ogsUsername;
     }
 
+    public boolean hasOgsUsername() {
+        return ogsUsername != null;
+    }
+
     public String getKgsUsername() {
         return kgsUsername;
+    }
+
+    public boolean hasKgsUsername() {
+        return kgsUsername != null;
     }
 
     public void setKgsUsername(String kgsUsername) {
@@ -70,6 +78,10 @@ public class Member {
 
     public String getFoxUsername() {
         return foxUsername;
+    }
+
+    public boolean hasFoxUsername() {
+        return foxUsername != null;
     }
 
     public void setFoxUsername(String foxUsername) {
@@ -82,6 +94,14 @@ public class Member {
 
     public void setTygemUsername(String tygemUsername) {
         this.tygemUsername = tygemUsername;
+    }
+
+    public boolean hasTygemUsername() {
+        return tygemUsername != null;
+    }
+
+    public boolean hasFfgData() {
+        return ffgId != null && ffgName != null;
     }
 
     public Integer getFfgId() {
@@ -102,6 +122,10 @@ public class Member {
 
     public String getFfgRankHybrid() {
         return ffgRankHybrid;
+    }
+
+    public boolean hasFfgRankHybrid() {
+        return ffgRankHybrid != null;
     }
 
     public void setFfgRankHybrid(String ffgRankHybrid) {
@@ -136,6 +160,10 @@ public class Member {
 
     public void setOsrUsername(String osrUsername) {
         this.osrUsername = osrUsername;
+    }
+
+    public boolean hasOsrUsername() {
+        return osrUsername != null;
     }
 
     public Long getDiscordId() {

@@ -32,6 +32,12 @@ public class OgsServerTests {
     }
 
     @Test
+    public void testGetProfileUrl() {
+        assertThat(ogs.getProfileUrl(12345))
+                .isEqualTo("https://online-go.com/player/12345/");
+    }
+
+    @Test
     public void testExtractIdFromProfileUrl() throws MalformedURLException {
         assertThat(ogs.extractIdFromProfileUrl("https://online-go.com/user/view/93483"))
                 .isEqualTo(93483);

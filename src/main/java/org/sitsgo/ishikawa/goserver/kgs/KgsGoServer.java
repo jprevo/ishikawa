@@ -9,6 +9,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 @Component
@@ -23,6 +25,11 @@ public class KgsGoServer implements GoServer {
     public KgsGoServer(final KgsConnection connection, final GameExtractor extractor) {
         this.connection = connection;
         this.extractor = extractor;
+    }
+
+    public String getProfileUrl(String kgsUsername) {
+        String usernameQueryParam = URLEncoder.encode(kgsUsername, StandardCharsets.UTF_8);
+        return String.format("https://www.gokgs.com/gameArchives.jsp?user=%s", usernameQueryParam);
     }
 
     @Override

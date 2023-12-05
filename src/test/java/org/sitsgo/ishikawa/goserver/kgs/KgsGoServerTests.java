@@ -66,6 +66,15 @@ public class KgsGoServerTests {
         assertThat(game.getSize()).isEqualTo(19);
     }
 
+    @Test
+    public void testGetProfileUrl() {
+        assertThat(kgs.getProfileUrl("robin"))
+                .isEqualTo("https://www.gokgs.com/gameArchives.jsp?user=robin");
+
+        assertThat(kgs.getProfileUrl("name&suspiciousParam=1"))
+                .isEqualTo("https://www.gokgs.com/gameArchives.jsp?user=name%26suspiciousParam%3D1");
+    }
+
     private String loadKgsResponse() throws IOException {
         return Files.readString(
                 Path.of("./src/test/resources/kgs-data-default.json"),

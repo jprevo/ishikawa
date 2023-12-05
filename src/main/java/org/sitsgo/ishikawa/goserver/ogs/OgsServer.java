@@ -169,4 +169,8 @@ public class OgsServer implements GoServer {
         return Integer.parseInt(idInUrl);
     }
 
+    public String getProfileUrl(Integer ogsId) {
+        return String.format("https://online-go.com/player/%d/", ogsId);
+    }
+
 }
