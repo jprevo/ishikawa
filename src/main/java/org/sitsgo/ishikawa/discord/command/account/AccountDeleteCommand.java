@@ -30,7 +30,6 @@ public class AccountDeleteCommand implements DiscordButtonCommand {
 
     @Override
     public Publisher onButtonClick(ButtonInteractionEvent event, Member member) {
-
         switch (event.getCustomId()) {
             case "delete-account":
                 memberRepository.delete(member);
