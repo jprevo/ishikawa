@@ -22,6 +22,7 @@ public class Member {
     private String kgsUsername;
     private String foxUsername;
     private String tygemUsername;
+    private String igsUsername;
     private Integer ffgId;
     private String ffgName;
     private String ffgRankHybrid;
@@ -98,6 +99,18 @@ public class Member {
 
     public boolean hasTygemUsername() {
         return tygemUsername != null;
+    }
+
+    public String getIgsUsername() {
+        return igsUsername;
+    }
+
+    public void setIgsUsername(String igsUsername) {
+        this.igsUsername = igsUsername;
+    }
+
+    public boolean hasIgsUsername() {
+        return this.igsUsername != null;
     }
 
     public boolean hasFfgData() {

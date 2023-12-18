@@ -83,6 +83,10 @@ public class MemberCardGenerator {
             builder.addField("Tygem", member.getTygemUsername(), true);
         }
 
+        if (member.hasIgsUsername()) {
+            builder.addField("IGS", member.getIgsUsername(), true);
+        }
+
         return builder.build();
     }
 }

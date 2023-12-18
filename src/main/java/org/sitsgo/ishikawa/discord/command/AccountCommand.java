@@ -33,10 +33,10 @@ public class AccountCommand implements DiscordCommand, DiscordMenuCommand {
                 SelectMenu.Option.of("Indiquer mon profil FFG (recommandé)", "ffg"),
                 SelectMenu.Option.of("Indiquer mon pseudo KGS (recommandé)", "kgs"),
                 SelectMenu.Option.of("Indiquer mon profil OSR (recommandé)", "osr"),
-                SelectMenu.Option.of("Indiquer mon profil EGF", "egf"),
                 SelectMenu.Option.of("Indiquer mon profil OGS", "ogs"),
                 SelectMenu.Option.of("Indiquer mon pseudo Fox", "fox"),
                 SelectMenu.Option.of("Indiquer mon pseudo Tygem", "tygem"),
+                SelectMenu.Option.of("Indiquer mon pseudo IGS", "igs"),
                 SelectMenu.Option.of("Changer la visibilité de mon profil", "anon"),
                 SelectMenu.Option.of("Supprimer mes informations", "delete")
         ).withPlaceholder("Choisissez une action de compte...");
