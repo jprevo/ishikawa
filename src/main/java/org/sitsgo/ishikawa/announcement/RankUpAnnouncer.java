@@ -1,7 +1,9 @@
-package org.sitsgo.ishikawa.gowebsite.ffg;
+package org.sitsgo.ishikawa.announcement;
 
 import org.sitsgo.ishikawa.discord.DiscordBot;
 import org.sitsgo.ishikawa.gowebsite.WebsiteParsingException;
+import org.sitsgo.ishikawa.gowebsite.ffg.FFGProfile;
+import org.sitsgo.ishikawa.gowebsite.ffg.FFGWebsite;
 import org.sitsgo.ishikawa.member.Member;
 import org.sitsgo.ishikawa.member.MemberRepository;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -10,12 +12,12 @@ import org.springframework.stereotype.Component;
 import java.util.Date;
 
 @Component
-public class FFGRankUpChecker {
+public class RankUpAnnouncer {
     private final MemberRepository memberRepository;
     private final FFGWebsite ffgWebsite;
     private final DiscordBot discordBot;
 
-    public FFGRankUpChecker(MemberRepository memberRepository, FFGWebsite ffgWebsite, DiscordBot discordBot) {
+    public RankUpAnnouncer(MemberRepository memberRepository, FFGWebsite ffgWebsite, DiscordBot discordBot) {
         this.memberRepository = memberRepository;
         this.ffgWebsite = ffgWebsite;
         this.discordBot = discordBot;

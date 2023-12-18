@@ -1,9 +1,9 @@
 package org.sitsgo.ishikawa.discord;
 
+import org.sitsgo.ishikawa.announcement.RankUpAnnouncer;
 import org.sitsgo.ishikawa.goserver.Game;
 import org.sitsgo.ishikawa.goserver.kgs.KgsGoServer;
 import org.sitsgo.ishikawa.goserver.ogs.OgsServer;
-import org.sitsgo.ishikawa.gowebsite.ffg.FFGRankUpChecker;
 import org.sitsgo.ishikawa.member.Member;
 import org.sitsgo.ishikawa.member.MemberRepository;
 import org.slf4j.Logger;
@@ -26,9 +26,9 @@ public class DiscordController {
 
     private final MemberRepository repo;
 
-    private final FFGRankUpChecker rankUpChecker;
+    private final RankUpAnnouncer rankUpChecker;
 
-    public DiscordController(KgsGoServer kgs, DiscordBot bot, OgsServer ogs, MemberRepository repo, FFGRankUpChecker rankUpChecker) {
+    public DiscordController(KgsGoServer kgs, DiscordBot bot, OgsServer ogs, MemberRepository repo, RankUpAnnouncer rankUpChecker) {
         this.kgs = kgs;
         this.bot = bot;
         this.ogs = ogs;
