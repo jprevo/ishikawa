@@ -49,7 +49,7 @@ to be able to sign in, and the room where games are played.
 - [x] Manage account with Discord Bot
 - [x] Parse games from KGS and OGS
 - [ ] Web UI build with React for administrators (OAuth2 login)
-- [ ] Discord announcements
+- [x] Discord announcements
 - [ ] Manage all messages with Spring Messages
 - [ ] Upload SGF on Discord for analysis
-- [ ] Level-up announcements!
+- [x] Level-up announcements!
