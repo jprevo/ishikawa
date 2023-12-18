@@ -23,7 +23,7 @@ public class RankUpAnnouncer {
         this.discordBot = discordBot;
     }
 
-    @Scheduled(fixedRate = 3600000)
+    @Scheduled(fixedRate = 300000)
     public void run() {
         Member member = getNextMemberToCheck();
         FFGProfile profile;
