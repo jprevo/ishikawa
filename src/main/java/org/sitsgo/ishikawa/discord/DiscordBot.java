@@ -16,6 +16,7 @@ import org.sitsgo.ishikawa.discord.command.DiscordCommand;
 import org.sitsgo.ishikawa.discord.command.DiscordMenuCommand;
 import org.sitsgo.ishikawa.discord.command.DiscordModalCommand;
 import org.sitsgo.ishikawa.goserver.Game;
+import org.sitsgo.ishikawa.gowebsite.ffg.FFGWebsite;
 import org.sitsgo.ishikawa.member.Member;
 import org.sitsgo.ishikawa.member.MemberRepository;
 import org.slf4j.Logger;
@@ -67,8 +68,11 @@ public class DiscordBot {
 
     private final MemberRepository memberRepository;
 
-    public DiscordBot(MemberRepository memberRepository) {
+    private final FFGWebsite ffgWebsite;
+
+    public DiscordBot(MemberRepository memberRepository, FFGWebsite ffgWebsite) {
         this.memberRepository = memberRepository;
+        this.ffgWebsite = ffgWebsite;
     }
 
     public void login() {
@@ -219,16 +223,21 @@ public class DiscordBot {
 
     private EmbedCreateSpec createRankUpAnnouncementEmbed(Member member) {
         String title = String.format(
-                "%s vient de passer %s FFG !",
+                "Félicitations à %s qui vient de passer %s FFG \uD83E\uDD73",
                 member.getDisplayName(),
                 member.getFfgRankHybrid()
         );
 
         EmbedCreateSpec.Builder embed = EmbedCreateSpec.builder()
-                .color(Color.GREEN)
+                .color(Color.SUMMER_SKY)
                 .title(title)
-                .description("Félicitations \uD83E\uDD73")
                 .thumbnail(member.getDiscordAvatarUrl());
+
+        if (member.hasFfgRankHybrid()) {
+            String ffgUrl = ffgWebsite.getProfileUrl(member.getFfgId());
+            String ffgLink = String.format("[Voir sur le site de la FFG](%s)", ffgUrl);
+            embed.addField("Profil", ffgLink, false);
+        }
 
         return embed.build();
     }

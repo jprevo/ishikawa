@@ -36,8 +36,8 @@ public class ReviewCommand implements DiscordCommand {
         if (!file.getFilename().toLowerCase().endsWith("sgf")) {
             return event.reply("Veuillez envoyer uniquement un fichier sgf").withEphemeral(true);
         }
-        
-        String title = String.format("Demande de commentaire de %s", member.getDisplayName());
+
+        String title = String.format("Demande de commentaire de %s (%s)", member.getDisplayName(), member.getDiscordDisplayName());
         String link = String.format("[%s](%s)", file.getFilename(), file.getUrl());
 
         EmbedCreateSpec.Builder builder = EmbedCreateSpec.builder()
