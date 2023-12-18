@@ -47,7 +47,6 @@ public class KgsGoServer implements GoServer {
 
         try {
             JSONObject data = this.connection.getResponse();
-            log.info(data.toString());
             games = extractor.extractGames(data);
 
             games.forEach(game -> {

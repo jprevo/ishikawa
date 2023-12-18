@@ -28,6 +28,7 @@ DISCORD_GUILD_ID // Server ID
 DISCORD_GAME_ANNOUNCEMENT_CHANNEL_ID // Where our bot should make games annoucements?
 DISCORD_RANK_UP_ANNOUNCEMENT_CHANNEL_ID // Where our bot should make FFG rank up announcements?
 DISCORD_MEMBER_ROLE_ID // The role ID assigned to our paid members
+DISCORD_REVIEW_MENTION_ROLE_ID // Which role to ping for reviews
 ```
 
 ### KGS
