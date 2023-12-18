@@ -3,6 +3,7 @@ package org.sitsgo.ishikawa.discord;
 import org.sitsgo.ishikawa.goserver.Game;
 import org.sitsgo.ishikawa.goserver.kgs.KgsGoServer;
 import org.sitsgo.ishikawa.goserver.ogs.OgsServer;
+import org.sitsgo.ishikawa.gowebsite.ffg.FFGRankUpChecker;
 import org.sitsgo.ishikawa.member.Member;
 import org.sitsgo.ishikawa.member.MemberRepository;
 import org.slf4j.Logger;
@@ -25,11 +26,14 @@ public class DiscordController {
 
     private final MemberRepository repo;
 
-    public DiscordController(KgsGoServer kgs, DiscordBot bot, OgsServer ogs, MemberRepository repo) {
+    private final FFGRankUpChecker rankUpChecker;
+
+    public DiscordController(KgsGoServer kgs, DiscordBot bot, OgsServer ogs, MemberRepository repo, FFGRankUpChecker rankUpChecker) {
         this.kgs = kgs;
         this.bot = bot;
         this.ogs = ogs;
         this.repo = repo;
+        this.rankUpChecker = rankUpChecker;
     }
 
     @GetMapping("/games")
@@ -64,6 +68,13 @@ public class DiscordController {
     @GetMapping("/list")
     public String members() {
         repo.findAll().forEach(member -> log.info(member.toString()));
+
+        return "ok";
+    }
+
+    @GetMapping("/rankup")
+    public String rankup() {
+        rankUpChecker.run();
 
         return "ok";
     }

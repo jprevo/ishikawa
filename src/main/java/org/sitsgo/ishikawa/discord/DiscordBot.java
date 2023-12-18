@@ -7,6 +7,7 @@ import discord4j.core.event.domain.interaction.*;
 import discord4j.core.object.entity.channel.GuildMessageChannel;
 import discord4j.core.spec.EmbedCreateSpec;
 import discord4j.core.spec.InteractionApplicationCommandCallbackReplyMono;
+import discord4j.core.spec.MessageCreateSpec;
 import discord4j.discordjson.json.ApplicationCommandRequest;
 import discord4j.rest.util.Color;
 import org.reactivestreams.Publisher;
@@ -29,7 +30,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-@Component("bot")
+@Component
 public class DiscordBot {
     private static final Logger log = LoggerFactory.getLogger(DiscordBot.class);
     private GatewayDiscordClient client;
@@ -45,6 +46,9 @@ public class DiscordBot {
 
     @Value("${discord.game-announcement-channel-id}")
     private long gameAnnouncementChannelId;
+
+    @Value("${discord.rank-up-announcement-channel-id}")
+    private long rankUpAnnouncementChannelId;
 
     @Value("${discord.member-role-id}")
     private Snowflake discordMemberRoleId;
@@ -189,6 +193,42 @@ public class DiscordBot {
         if (game.hasUrl()) {
             embed.url(game.getUrl());
         }
+
+        return embed.build();
+    }
+
+    public void announceRankUp(Member member) {
+        if (isDisabled()) {
+            return;
+        }
+
+        EmbedCreateSpec embed = createRankUpAnnouncementEmbed(member);
+
+        String ping = String.format("Bravo <@%d> !", member.getDiscordId());
+
+        MessageCreateSpec message = MessageCreateSpec.builder()
+                .content(ping)
+                .addEmbed(embed)
+                .build();
+
+        client.getChannelById(Snowflake.of(rankUpAnnouncementChannelId))
+                .ofType(GuildMessageChannel.class)
+                .flatMap(channel -> channel.createMessage(message))
+                .subscribe();
+    }
+
+    private EmbedCreateSpec createRankUpAnnouncementEmbed(Member member) {
+        String title = String.format(
+                "%s vient de passer %s FFG !",
+                member.getDisplayName(),
+                member.getFfgRankHybrid()
+        );
+
+        EmbedCreateSpec.Builder embed = EmbedCreateSpec.builder()
+                .color(Color.GREEN)
+                .title(title)
+                .description("Félicitations \uD83E\uDD73")
+                .thumbnail(member.getDiscordAvatarUrl());
 
         return embed.build();
     }

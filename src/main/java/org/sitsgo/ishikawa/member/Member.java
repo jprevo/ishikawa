@@ -43,6 +43,14 @@ public class Member {
                 id);
     }
 
+    public String getDisplayName() {
+        if (hasFfgData() && !getAnonymous()) {
+            return getFfgName();
+        }
+
+        return getDiscordDisplayName();
+    }
+
     public Long getId() {
         return id;
     }

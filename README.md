@@ -28,7 +28,8 @@ We use sqlite in order to keep things simple and compact.
 DISCORD_TOKEN // See your discord bot app
 DISCORD_APPLICATION_ID // See your discord bot app
 DISCORD_GUILD_ID // Server ID
-DISCORD_GAME_ANNOUNCEMENT_CHANNEL_ID // Where our bot should make games annoucement?
+DISCORD_GAME_ANNOUNCEMENT_CHANNEL_ID // Where our bot should make games annoucements?
+DISCORD_RANK_UP_ANNOUNCEMENT_CHANNEL_ID // Where our bot should make FFG rank up announcements?
 DISCORD_MEMBER_ROLE_ID // The role ID assigned to our paid members
 ```
 
