@@ -74,6 +74,11 @@ public class Member {
     }
 
     public void setKgsUsername(String kgsUsername) {
+        if (shouldRemoveUsername(kgsUsername)) {
+            this.kgsUsername = null;
+            return;
+        }
+
         this.kgsUsername = kgsUsername;
     }
 
@@ -86,6 +91,11 @@ public class Member {
     }
 
     public void setFoxUsername(String foxUsername) {
+        if (shouldRemoveUsername(foxUsername)) {
+            this.foxUsername = null;
+            return;
+        }
+
         this.foxUsername = foxUsername;
     }
 
@@ -94,6 +104,11 @@ public class Member {
     }
 
     public void setTygemUsername(String tygemUsername) {
+        if (shouldRemoveUsername(tygemUsername)) {
+            this.tygemUsername = null;
+            return;
+        }
+
         this.tygemUsername = tygemUsername;
     }
 
@@ -106,6 +121,11 @@ public class Member {
     }
 
     public void setIgsUsername(String igsUsername) {
+        if (shouldRemoveUsername(igsUsername)) {
+            this.igsUsername = null;
+            return;
+        }
+        
         this.igsUsername = igsUsername;
     }
 
@@ -225,5 +245,13 @@ public class Member {
 
     public void setDiscordAvatarUrl(String discordAvatarUrl) {
         this.discordAvatarUrl = discordAvatarUrl;
+    }
+
+    public static boolean shouldRemoveUsername(String username) {
+        return username.equals(getUsernameRemover());
+    }
+
+    public static String getUsernameRemover() {
+        return "-";
     }
 }
