@@ -258,10 +258,10 @@ public class Member {
     }
 
     public static boolean shouldRemoveUsername(String username) {
-        return username.equals(getUsernameRemover());
+        return username.equals(getUsernameClearingValue());
     }
 
-    public static String getUsernameRemover() {
+    public static String getUsernameClearingValue() {
         return "-";
     }
 }
