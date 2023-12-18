@@ -1,10 +1,9 @@
 package org.sitsgo.ishikawa.member;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import org.sitsgo.ishikawa.gowebsite.ffg.FFGProfile;
+
+import java.util.Date;
 
 @Entity
 public class Member {
@@ -27,6 +26,9 @@ public class Member {
     private String ffgName;
     private String ffgRankHybrid;
     private String ffgRankMain;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date ffgLastCheck;
     private Boolean anonymous = false;
     private String osrUsername;
     private Boolean isInClub;
@@ -125,7 +127,7 @@ public class Member {
             this.igsUsername = null;
             return;
         }
-        
+
         this.igsUsername = igsUsername;
     }
 
@@ -245,6 +247,14 @@ public class Member {
 
     public void setDiscordAvatarUrl(String discordAvatarUrl) {
         this.discordAvatarUrl = discordAvatarUrl;
+    }
+
+    public Date getFfgLastCheck() {
+        return ffgLastCheck;
+    }
+
+    public void setFfgLastCheck(Date ffgLastCheck) {
+        this.ffgLastCheck = ffgLastCheck;
     }
 
     public static boolean shouldRemoveUsername(String username) {
