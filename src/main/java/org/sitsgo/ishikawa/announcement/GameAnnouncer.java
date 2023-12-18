@@ -75,7 +75,7 @@ public class GameAnnouncer {
         Member white = getMemberMatchingUsername(game.getServerType(), game.getWhite());
 
         if (black == null || white == null) {
-            return false;
+            return true;
         }
 
         if (!black.getInClub()) {
