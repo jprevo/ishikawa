@@ -40,7 +40,7 @@ public class MemberCardGenerator {
                 .thumbnail(member.getDiscordAvatarUrl());
 
         if (member.getInClub()) {
-            String description = String.format("%s est adhérant SITS", member.getDiscordDisplayName());
+            String description = String.format("%s est adhérent SITS", member.getDiscordDisplayName());
             builder.description(description);
         }
 

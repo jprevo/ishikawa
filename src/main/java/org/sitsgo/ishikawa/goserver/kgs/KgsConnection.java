@@ -27,9 +27,10 @@ public class KgsConnection {
     @Value("${goserver.kgs.password}")
     private String password;
 
+    private final CookieManager cookieManager;
+
     KgsConnection() {
-        CookieManager cookieManager = new CookieManager();
-        CookieHandler.setDefault(cookieManager);
+        this.cookieManager = new CookieManager();
     }
 
     JSONObject getResponse() throws GoServerException {
@@ -45,16 +46,19 @@ public class KgsConnection {
     }
 
     private void login() throws IOException, GoServerException {
+        CookieHandler.setDefault(cookieManager);
         HttpURLConnection loginConnection = createLoginConnection();
         postLoginCredentials(loginConnection);
 
         if (loginConnection.getResponseCode() != HttpURLConnection.HTTP_OK) {
             loginConnection.disconnect();
+            CookieHandler.setDefault(null);
 
             throw new GoServerException("Unable to login to KGS");
         }
 
         loginConnection.disconnect();
+        CookieHandler.setDefault(null);
     }
 
     private HttpURLConnection createLoginConnection() throws IOException {
@@ -89,10 +93,12 @@ public class KgsConnection {
     }
 
     private JSONObject getData() throws IOException, GoServerException {
+        CookieHandler.setDefault(cookieManager);
         HttpURLConnection dataConnection = createDataConnection();
 
         if (dataConnection.getResponseCode() != HttpURLConnection.HTTP_OK) {
             dataConnection.disconnect();
+            CookieHandler.setDefault(null);
 
             throw new GoServerException("Unable to get data from KGS");
         }
@@ -100,6 +106,7 @@ public class KgsConnection {
         JSONObject data = getDataResponse(dataConnection);
 
         dataConnection.disconnect();
+        CookieHandler.setDefault(null);
 
         return data;
     }
