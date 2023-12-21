@@ -1,8 +1,6 @@
 A small app with a Discord Bot and a Web app linked together made for managing
 SITS ([Stones In The Shell](https://sits-go.org/)) go/baduk/weiqi club members.
 
-⚠️ **ATM This project is very much WIP and not ready for production** ⚠️
-
 This project must be able to run on a small VPS with limited RAM and vCPU and should build on Java 17/Spring Boot 3.2.0.
 
 ## Environment variables
@@ -47,6 +45,10 @@ KGS_CHANNEL_ID
 In order to retrieve games from the KGS Go Server, we need a bot user to be able to sign in, and the room where games
 are played.
 
+## Tests
+
+In your test environment, please also set the env variable `spring_profiles_active` to `test`.
+
 ## TODO
 
 - [x] Manage account with Discord Bot
@@ -54,5 +56,5 @@ are played.
 - [ ] Web UI build with React for administrators (OAuth2 login)
 - [x] Discord announcements
 - [ ] Manage all messages with Spring Messages
-- [ ] Upload SGF on Discord for analysis
+- [x] Upload SGF on Discord for analysis
 - [x] Level-up announcements!

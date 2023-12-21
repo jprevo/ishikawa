@@ -44,6 +44,7 @@ public class AccountCommand implements DiscordCommand, DiscordMenuCommand {
         String welcomeMessage = String.format("Bienvenue %s dans la configuration de votre compte Stones in the Shell.\n" +
                 "Que souhaitez-vous faire ?", member.getDiscordDisplayName());
 
+
         return event.reply(welcomeMessage)
                 .withComponents(ActionRow.of(select))
                 .withEphemeral(true);
