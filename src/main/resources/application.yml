@@ -10,6 +10,11 @@ spring:
     driver-class-name: org.sqlite.JDBC
   artemis:
     mode: embedded
+  session:
+    store-type: jdbc
+    jdbc:
+      initialize-schema: always
+
 
 discord:
   token: ${DISCORD_TOKEN}
