@@ -7,6 +7,9 @@ export default defineConfig({
   server: {
     proxy: {
       "/user": "http://localhost:8080",
+      "/login": "http://localhost:8080",
+      "/auth": "http://localhost:8080",
+      "/logout": "http://localhost:8080",
       "/api": "http://localhost:8080"
     }
   }

@@ -45,6 +45,12 @@ KGS_CHANNEL_ID
 In order to retrieve games from the KGS Go Server, we need a bot user to be able to sign in, and the room where games
 are played.
 
+### Others
+
+```
+FRONTEND_URL // http://localhost:5173/ for example
+```
+
 ## Tests
 
 In your test environment, please also set the env variable `spring_profiles_active` to `test`.

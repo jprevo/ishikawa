@@ -6,6 +6,8 @@ import org.json.JSONObject;
 import org.sitsgo.ishikawa.discord.oauth.DiscordOAuth;
 import org.sitsgo.ishikawa.security.AdminUser;
 import org.sitsgo.ishikawa.security.AdminUserService;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
@@ -22,6 +24,10 @@ import java.io.IOException;
 
 @RestController
 public class DiscordAuthController {
+
+    @Value("${frontend-url}")
+    private String frontendUrl;
+
     private final DiscordOAuth oAuth;
 
     private final AdminUserService adminUserService;
@@ -32,12 +38,14 @@ public class DiscordAuthController {
     }
 
     @GetMapping("/user")
-    public AdminUser user(Authentication authentication) {
+    public ResponseEntity<?> user(Authentication authentication) {
         if (authentication == null) {
-            return null;
+            return ResponseEntity.ok("null");
         }
 
-        return (AdminUser) authentication.getPrincipal();
+        AdminUser user = (AdminUser) authentication.getPrincipal();
+
+        return ResponseEntity.ok(user);
     }
 
     @GetMapping("/login")
@@ -71,7 +79,7 @@ public class DiscordAuthController {
             HttpSession session = request.getSession(true);
             session.setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY, context);
 
-            return new RedirectView("/");
+            return new RedirectView(frontendUrl);
         } catch (UsernameNotFoundException e) {
             throw new RuntimeException("Forbidden");
         } catch (IOException e) {
@@ -85,6 +93,6 @@ public class DiscordAuthController {
         HttpSession session = request.getSession(true);
         session.setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY, SecurityContextHolder.getContext());
 
-        return new RedirectView("/");
+        return new RedirectView(frontendUrl);
     }
 }

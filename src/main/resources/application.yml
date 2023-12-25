@@ -15,6 +15,7 @@ spring:
     jdbc:
       initialize-schema: always
 
+frontend-url: ${FRONTEND_URL}
 
 discord:
   token: ${DISCORD_TOKEN}
