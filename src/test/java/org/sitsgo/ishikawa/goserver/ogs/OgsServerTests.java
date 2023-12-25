@@ -1,11 +1,8 @@
 package org.sitsgo.ishikawa.goserver.ogs;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import java.net.MalformedURLException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -35,19 +32,5 @@ public class OgsServerTests {
     public void testGetProfileUrl() {
         assertThat(ogs.getProfileUrl(12345))
                 .isEqualTo("https://online-go.com/player/12345/");
-    }
-
-    @Test
-    public void testExtractIdFromProfileUrl() throws MalformedURLException {
-        assertThat(ogs.extractIdFromProfileUrl("https://online-go.com/user/view/93483"))
-                .isEqualTo(93483);
-
-        Assertions.assertThrows(MalformedURLException.class, () -> {
-            ogs.extractIdFromProfileUrl("https://online-go.com/user/view/a");
-        });
-
-        Assertions.assertThrows(MalformedURLException.class, () -> {
-            ogs.extractIdFromProfileUrl("https://gokgs.com/user");
-        });
     }
 }

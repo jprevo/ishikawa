@@ -152,21 +152,16 @@ public class OgsServer implements GoServer {
                 return false;
             }
 
-            return url.getPath().contains("user/view/");
+            String path = url.getPath();
+
+            return path.contains("user/view/") || path.contains("player/");
         } catch (MalformedURLException e) {
             return false;
         }
     }
 
     public int extractIdFromProfileUrl(String profileUrl) throws MalformedURLException {
-        String[] parts = profileUrl.split("/");
-        String idInUrl = parts[parts.length - 1];
-
-        if (!idInUrl.matches("^[0-9]+$")) {
-            throw new MalformedURLException("Cannot extract id from url");
-        }
-
-        return Integer.parseInt(idInUrl);
+        return new ProfileIdExtractor().extract(profileUrl);
     }
 
     public String getProfileUrl(Integer ogsId) {
