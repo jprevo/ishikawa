@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.security.Principal;
+
 @RestController
 @RequestMapping("/api/member")
 public class MemberController {
@@ -25,6 +27,11 @@ public class MemberController {
     @GetMapping("/list")
     public Iterable<Member> list() {
         return memberRepository.findAll();
+    }
+
+    @GetMapping("/test")
+    public String test(Principal adminUser) {
+        return adminUser.getName();
     }
 
     @GetMapping("/parse-ffg/{id}")
