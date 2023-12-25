@@ -4,6 +4,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.json.JSONObject;
 import org.sitsgo.ishikawa.discord.oauth.DiscordOAuth;
+import org.sitsgo.ishikawa.security.AdminUser;
 import org.sitsgo.ishikawa.security.AdminUserService;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -28,6 +29,15 @@ public class DiscordAuthController {
     public DiscordAuthController(DiscordOAuth oAuth, AdminUserService adminUserService) {
         this.oAuth = oAuth;
         this.adminUserService = adminUserService;
+    }
+
+    @GetMapping("/user")
+    public AdminUser user(Authentication authentication) {
+        if (authentication == null) {
+            return null;
+        }
+
+        return (AdminUser) authentication.getPrincipal();
     }
 
     @GetMapping("/login")

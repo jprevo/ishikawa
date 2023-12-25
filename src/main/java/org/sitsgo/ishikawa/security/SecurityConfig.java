@@ -39,7 +39,8 @@ public class SecurityConfig {
         return http
                 .authorizeHttpRequests(authCustomizer -> authCustomizer
                         .requestMatchers(
-                                "/login", "/logout", "/auth", "/"
+                                "/login", "/logout", "/user",
+                                "/auth", "/"
                         ).permitAll()
                         .anyRequest().authenticated()
                 ).build();

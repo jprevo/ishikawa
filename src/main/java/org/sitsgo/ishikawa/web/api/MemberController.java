@@ -1,4 +1,4 @@
-package org.sitsgo.ishikawa.api;
+package org.sitsgo.ishikawa.web.api;
 
 import org.sitsgo.ishikawa.gowebsite.WebsiteParsingException;
 import org.sitsgo.ishikawa.gowebsite.ffg.FFGProfile;
