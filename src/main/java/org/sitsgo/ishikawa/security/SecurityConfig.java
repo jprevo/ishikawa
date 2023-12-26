@@ -36,12 +36,13 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        String[] authEndPoints = {"/login", "/logout", "/user", "/auth"};
+        String[] frontendEndPoints = {"/", "/index.html", "/assets/**"};
+
         return http
                 .authorizeHttpRequests(authCustomizer -> authCustomizer
-                        .requestMatchers(
-                                "/login", "/logout", "/user",
-                                "/auth", "/", "/index.html", "/assets/**"
-                        ).permitAll()
+                        .requestMatchers(authEndPoints).permitAll()
+                        .requestMatchers(frontendEndPoints).permitAll()
                         .anyRequest().authenticated()
                 ).build();
     }
