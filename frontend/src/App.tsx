@@ -2,9 +2,11 @@ import "./scss/login.scss";
 import { useContext, useEffect } from "react";
 import UserContext from "./user/user-context.ts";
 import { User } from "./user/user.ts";
+import Nav from "./Nav.tsx";
+import MemberList from "./MemberList.tsx";
 
 function App() {
-  const { user, setUser, login, logout } = useContext(UserContext);
+  const { user, setUser, login } = useContext(UserContext);
 
   useEffect(() => {
     const loadUser = async () => {
@@ -19,14 +21,10 @@ function App() {
     };
 
     loadUser();
-  }, [setUser, login]);
+  }, [setUser]);
 
   const onLoginClick = () => {
     login();
-  };
-
-  const onLogoutClick = () => {
-    logout();
   };
 
   if (user === undefined) {
@@ -45,7 +43,8 @@ function App() {
 
   return (
     <>
-      {user.username}. <a onClick={onLogoutClick}>Logout</a>{" "}
+      <Nav />
+      <MemberList />
     </>
   );
 }

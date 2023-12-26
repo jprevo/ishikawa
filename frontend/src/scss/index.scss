@@ -1,1 +1,6 @@
 @import "../../node_modules/@picocss/pico/scss/pico";
+
+html, body, #root, #main {
+  min-height: 100%;
+  height: 100%;
+}

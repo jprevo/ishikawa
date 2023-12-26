@@ -7,7 +7,9 @@ import UserProvider from "./user/UserProvider.tsx";
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <UserProvider>
-      <App />
+      <div data-theme="dark" id="main">
+        <App />
+      </div>
     </UserProvider>
   </React.StrictMode>,
 );
