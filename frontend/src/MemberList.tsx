@@ -52,9 +52,11 @@ function MemberList() {
       10,
     );
     const p2NumericalRank: number = parseInt(
-      p2.substring(0, p1.length - 1),
+      p2.substring(0, p2.length - 1),
       10,
     );
+
+    console.log(p1NumericalRank, p2NumericalRank);
 
     if (p1.endsWith("k")) {
       return p1NumericalRank < p2NumericalRank ? -1 : 1;
