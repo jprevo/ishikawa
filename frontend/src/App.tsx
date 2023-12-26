@@ -21,11 +21,19 @@ function App() {
         loadUser();
     }, [setUser, login]);
 
-    if (user === undefined) {
-        return <>Vous n'êtes pas connecté. <a onClick={login}>Se connecter.</a></>;
+    const onLoginClick = () => {
+        login();
     }
 
-    return <>Wesh, {user.username}. <a onClick={logout}>Logout</a> </>
+    const onLogoutClick = () => {
+        logout();
+    }
+
+    if (user === undefined) {
+        return <>Vous n'êtes pas connecté. <a onClick={onLoginClick}>Se connecter.</a></>;
+    }
+
+    return <>Wesh, {user.username}. <a onClick={onLogoutClick}>Logout</a> </>
 }
 
 export default App

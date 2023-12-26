@@ -40,7 +40,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authCustomizer -> authCustomizer
                         .requestMatchers(
                                 "/login", "/logout", "/user",
-                                "/auth", "/"
+                                "/auth", "/", "/index.html", "/assets/**"
                         ).permitAll()
                         .anyRequest().authenticated()
                 ).build();

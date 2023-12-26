@@ -1,8 +1,9 @@
-import {useState} from "react";
+import {PropsWithChildren, useState} from "react";
 import UserContext from "./user-context.ts";
+import {User} from "./user.ts";
 
-const UserProvider = ({ children }) => {
-    const [user, setUser] = useState();
+function UserProvider(props: PropsWithChildren) {
+    const [user, setUser] = useState<User>();
 
     const login = () => {
         window.location.href = "/login";
@@ -14,7 +15,7 @@ const UserProvider = ({ children }) => {
 
     return (
         <UserContext.Provider value={{ user, setUser, login, logout }}>
-            {children}
+            {props.children}
         </UserContext.Provider>
     );
 }
