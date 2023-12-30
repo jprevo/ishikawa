@@ -24,6 +24,7 @@ discord:
   game-announcement-channel-id: ${DISCORD_GAME_ANNOUNCEMENT_CHANNEL_ID}
   rank-up-announcement-channel-id: ${DISCORD_RANK_UP_ANNOUNCEMENT_CHANNEL_ID}
   member-role-id: ${DISCORD_MEMBER_ROLE_ID}
+  admin-role-id: ${DISCORD_ADMIN_ROLE_ID}
   review-mention-role-id: ${DISCORD_REVIEW_MENTION_ROLE_ID}
   oauth:
     client-id: ${DISCORD_OAUTH_CLIENT_ID}

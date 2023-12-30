@@ -1,6 +1,5 @@
 package org.sitsgo.ishikawa.discord;
 
-import discord4j.common.util.Snowflake;
 import discord4j.core.DiscordClientBuilder;
 import discord4j.core.GatewayDiscordClient;
 import discord4j.core.event.domain.interaction.*;
@@ -22,37 +21,25 @@ import org.sitsgo.ishikawa.member.MemberRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-@Component
+@Service
 public class DiscordBot {
     private static final Logger log = LoggerFactory.getLogger(DiscordBot.class);
+
+    private final DiscordBotConfiguration configuration;
+
+    private final MemberRepository memberRepository;
+
+    private final FFGWebsite ffgWebsite;
+
     private GatewayDiscordClient client;
-
-    @Value("${discord.application-id}")
-    private long applicationId;
-
-    @Value("${discord.guild-id}")
-    private long guildId;
-
-    @Value("${discord.token}")
-    private String token;
-
-    @Value("${discord.game-announcement-channel-id}")
-    private long gameAnnouncementChannelId;
-
-    @Value("${discord.rank-up-announcement-channel-id}")
-    private long rankUpAnnouncementChannelId;
-
-    @Value("${discord.member-role-id}")
-    private Snowflake discordMemberRoleId;
 
     @Autowired
     private List<DiscordCommand> commands;
@@ -66,17 +53,14 @@ public class DiscordBot {
     @Autowired
     private MessageSource messageSource;
 
-    private final MemberRepository memberRepository;
-
-    private final FFGWebsite ffgWebsite;
-
-    public DiscordBot(MemberRepository memberRepository, FFGWebsite ffgWebsite) {
+    public DiscordBot(DiscordBotConfiguration configuration, MemberRepository memberRepository, FFGWebsite ffgWebsite) {
+        this.configuration = configuration;
         this.memberRepository = memberRepository;
         this.ffgWebsite = ffgWebsite;
     }
 
     public void login() {
-        client = DiscordClientBuilder.create(token)
+        client = DiscordClientBuilder.create(configuration.getToken())
                 .build()
                 .login()
                 .block();
@@ -177,7 +161,7 @@ public class DiscordBot {
 
         EmbedCreateSpec embed = createGameAnnouncementEmbed(game);
 
-        client.getChannelById(Snowflake.of(gameAnnouncementChannelId))
+        client.getChannelById(configuration.getGameAnnouncementChannelId())
                 .ofType(GuildMessageChannel.class)
                 .flatMap(channel -> channel.createMessage(embed))
                 .subscribe();
@@ -215,7 +199,7 @@ public class DiscordBot {
                 .addEmbed(embed)
                 .build();
 
-        client.getChannelById(Snowflake.of(rankUpAnnouncementChannelId))
+        client.getChannelById(configuration.getRankUpAnnouncementChannelId())
                 .ofType(GuildMessageChannel.class)
                 .flatMap(channel -> channel.createMessage(message))
                 .subscribe();
@@ -255,27 +239,35 @@ public class DiscordBot {
         if (member == null) {
             member = new Member();
             member.setDiscordId(discordId);
-            String discriminator = null;
 
-            if (!discordMember.getDiscriminator().equals("0")) {
-                discriminator = discordMember.getDiscriminator();
+            boolean hasDiscriminator = !"0".equals(discordMember.getDiscriminator());
+
+            if (hasDiscriminator) {
+                member.setDiscordDiscriminator(discordMember.getDiscriminator());
             }
-
-            member.setDiscordDiscriminator(discriminator);
 
             memberRepository.save(member);
         }
 
-        boolean isInClub = discordMember.getRoleIds().contains(discordMemberRoleId);
-
         member.setDiscordUsername(discordMember.getUsername());
         member.setDiscordDisplayName(discordMember.getDisplayName());
         member.setDiscordAvatarUrl(discordMember.getAvatarUrl());
-        member.setInClub(isInClub);
+        member.setInClub(isMemberInClub(discordMember));
+        member.setAdmin(isMemberAdmin(discordMember));
 
         memberRepository.save(member);
 
         return member;
+    }
+
+    private boolean isMemberInClub(discord4j.core.object.entity.Member discordMember) {
+        return discordMember.getRoleIds()
+                .contains(configuration.getDiscordMemberRoleId());
+    }
+
+    private boolean isMemberAdmin(discord4j.core.object.entity.Member discordMember) {
+        return discordMember.getRoleIds()
+                .contains(configuration.getDiscordAdminRoleId());
     }
 
     public void registerCommands() {
@@ -291,7 +283,10 @@ public class DiscordBot {
         }
 
         client.getRestClient().getApplicationService()
-                .bulkOverwriteGuildApplicationCommand(applicationId, guildId, requests)
-                .subscribe();
+                .bulkOverwriteGuildApplicationCommand(
+                        configuration.getApplicationId(),
+                        configuration.getGuildId(),
+                        requests
+                ).subscribe();
     }
 }

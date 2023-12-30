@@ -31,6 +31,8 @@ public class Member {
     private Date ffgLastCheck;
     private Boolean anonymous = false;
     private String osrUsername;
+
+    private Boolean isAdmin = false;
     private Boolean isInClub;
 
     public Member() {
@@ -271,5 +273,13 @@ public class Member {
 
     public static String getUsernameClearingValue() {
         return "-";
+    }
+
+    public Boolean getAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(Boolean admin) {
+        isAdmin = admin;
     }
 }

@@ -29,6 +29,10 @@ public class AdminUserService implements UserDetailsService {
             throw new UsernameNotFoundException(username);
         }
 
+        if (!member.getAdmin()) {
+            throw new UsernameNotFoundException("User is not an admin");
+        }
+
         log.info(String.format("Loading admin user [%s]", member.getDisplayName()));
 
         return new AdminUser(member);

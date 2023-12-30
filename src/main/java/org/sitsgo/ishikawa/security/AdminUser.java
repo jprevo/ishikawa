@@ -14,11 +14,13 @@ public class AdminUser implements UserDetails {
     private final long id;
     private final String userName;
     private final String avatar;
+    private final boolean enabled;
 
     public AdminUser(Member member) {
         this.id = member.getDiscordId();
         this.userName = member.getDisplayName();
         this.avatar = member.getDiscordAvatarUrl();
+        this.enabled = member.getAdmin();
     }
 
     @Override
@@ -61,6 +63,6 @@ public class AdminUser implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return this.enabled;
     }
 }
