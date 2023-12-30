@@ -1,7 +1,6 @@
 package org.sitsgo.ishikawa;
 
 import org.sitsgo.ishikawa.discord.DiscordBot;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.env.Environment;
@@ -11,11 +10,11 @@ import org.springframework.stereotype.Component;
 public class AppStartupRunner implements ApplicationRunner {
     private final DiscordBot bot;
 
-    @Autowired
-    private Environment env;
+    private final Environment env;
 
-    AppStartupRunner(final DiscordBot bot) {
+    AppStartupRunner(final DiscordBot bot, Environment env) {
         this.bot = bot;
+        this.env = env;
     }
 
     @Override

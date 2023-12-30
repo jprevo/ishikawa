@@ -25,4 +25,5 @@ public class DiscordController {
 
         return "Commands registered";
     }
+
 }

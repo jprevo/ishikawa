@@ -55,13 +55,14 @@ public class GameAnnouncer {
         runAnnouncements(games);
     }
 
-    private void runAnnouncements(ArrayList<Game> games) {
+    public void runAnnouncements(ArrayList<Game> games) {
         games.removeIf(this::shouldNotAnnounce);
+        games.forEach(this::announceGame);
+    }
 
-        games.forEach(game -> {
-            bot.announceGame(game);
-            persistAnnouncement(game);
-        });
+    public void announceGame(Game game) {
+        bot.announceGame(game);
+        persistAnnouncement(game);
     }
 
     private boolean shouldNotAnnounce(Game game) {

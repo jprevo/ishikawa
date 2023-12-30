@@ -60,7 +60,7 @@ In your test environment, please also set the env variable `spring_profiles_acti
 
 - [x] Manage account with Discord Bot
 - [x] Parse games from KGS and OGS
-- [ ] Web UI build with React for administrators (OAuth2 login)
+- [x] Web UI build with React for administrators (OAuth2 login)
 - [x] Discord announcements
 - [ ] Manage all messages with Spring Messages
 - [x] Upload SGF on Discord for analysis

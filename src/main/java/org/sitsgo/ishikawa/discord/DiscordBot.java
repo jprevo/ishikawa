@@ -16,18 +16,17 @@ import org.sitsgo.ishikawa.discord.command.DiscordMenuCommand;
 import org.sitsgo.ishikawa.discord.command.DiscordModalCommand;
 import org.sitsgo.ishikawa.go.Game;
 import org.sitsgo.ishikawa.gowebsite.ffg.FFGWebsite;
+import org.sitsgo.ishikawa.i18n.I18n;
 import org.sitsgo.ishikawa.member.Member;
 import org.sitsgo.ishikawa.member.MemberRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 @Service
 public class DiscordBot {
@@ -38,6 +37,8 @@ public class DiscordBot {
     private final MemberRepository memberRepository;
 
     private final FFGWebsite ffgWebsite;
+
+    private final I18n i18n;
 
     private GatewayDiscordClient client;
 
@@ -50,13 +51,16 @@ public class DiscordBot {
     @Autowired
     private List<DiscordButtonCommand> buttonCommands;
 
-    @Autowired
-    private MessageSource messageSource;
-
-    public DiscordBot(DiscordBotConfiguration configuration, MemberRepository memberRepository, FFGWebsite ffgWebsite) {
+    public DiscordBot(
+            DiscordBotConfiguration configuration,
+            MemberRepository memberRepository,
+            FFGWebsite ffgWebsite,
+            I18n i18n
+    ) {
         this.configuration = configuration;
         this.memberRepository = memberRepository;
         this.ffgWebsite = ffgWebsite;
+        this.i18n = i18n;
     }
 
     public void login() {
@@ -150,7 +154,7 @@ public class DiscordBot {
     }
 
     private InteractionApplicationCommandCallbackReplyMono interactionNotFound(DeferrableInteractionEvent event) {
-        return event.reply(messageSource.getMessage("discord.error.notfound", null, Locale.FRANCE))
+        return event.reply(i18n.t("discord.notfound"))
                 .withEphemeral(true);
     }
 
@@ -170,12 +174,12 @@ public class DiscordBot {
     private EmbedCreateSpec createGameAnnouncementEmbed(Game game) {
         EmbedCreateSpec.Builder embed = EmbedCreateSpec.builder()
                 .color(Color.RED)
-                .title("⚔️ " + game.getTitle())
-                .description("Une partie vient de commencer !")
-                .addField("Serveur", game.getServerName(), false)
-                .addField("Komi", String.valueOf(game.getKomi()), true)
-                .addField("Handicap", String.valueOf(game.getHandicap()), true)
-                .addField("Goban", game.getGobanSize(), true)
+                .title(i18n.t("discord.game.title", game.getTitle()))
+                .description(i18n.t("discord.game.start"))
+                .addField(i18n.t("discord.game.server"), game.getServerName(), false)
+                .addField(i18n.t("discord.game.komi"), String.valueOf(game.getKomi()), true)
+                .addField(i18n.t("discord.game.handicap"), String.valueOf(game.getHandicap()), true)
+                .addField(i18n.t("discord.game.goban"), game.getGobanSize(), true)
                 .timestamp(Instant.now());
 
         if (game.hasUrl()) {
@@ -192,10 +196,11 @@ public class DiscordBot {
 
         EmbedCreateSpec embed = createRankUpAnnouncementEmbed(member);
 
-        String ping = String.format("Bravo <@%d> !", member.getDiscordId());
+        String userPing = String.format("<@%d>", member.getDiscordId());
+        String content = i18n.t("discord.rankup.message", userPing);
 
         MessageCreateSpec message = MessageCreateSpec.builder()
-                .content(ping)
+                .content(content)
                 .addEmbed(embed)
                 .build();
 
@@ -206,8 +211,8 @@ public class DiscordBot {
     }
 
     private EmbedCreateSpec createRankUpAnnouncementEmbed(Member member) {
-        String title = String.format(
-                "Félicitations à %s qui vient de passer %s FFG \uD83E\uDD73",
+        String title = i18n.t(
+                "discord.rankup.title",
                 member.getDisplayName(),
                 member.getFfgRankHybrid()
         );
@@ -219,8 +224,9 @@ public class DiscordBot {
 
         if (member.hasFfgRankHybrid()) {
             String ffgUrl = ffgWebsite.getProfileUrl(member.getFfgId());
-            String ffgLink = String.format("[Voir sur le site de la FFG](%s)", ffgUrl);
-            embed.addField("Profil", ffgLink, false);
+            String ffgLinkTitle = i18n.t("discord.rankup.linktitle");
+            String ffgLink = String.format("[%s](%s)", ffgLinkTitle, ffgUrl);
+            embed.addField(i18n.t("discord.rankup.profile"), ffgLink, false);
         }
 
         return embed.build();
@@ -240,10 +246,10 @@ public class DiscordBot {
             member = new Member();
             member.setDiscordId(discordId);
 
-            boolean hasDiscriminator = !"0".equals(discordMember.getDiscriminator());
+            String discriminator = discordMember.getDiscriminator();
 
-            if (hasDiscriminator) {
-                member.setDiscordDiscriminator(discordMember.getDiscriminator());
+            if (!"0".equals(discriminator)) {
+                member.setDiscordDiscriminator(discriminator);
             }
 
             memberRepository.save(member);
@@ -275,7 +281,7 @@ public class DiscordBot {
             return;
         }
 
-        List<ApplicationCommandRequest> requests = new ArrayList<ApplicationCommandRequest>();
+        List<ApplicationCommandRequest> requests = new ArrayList<>();
 
         for (DiscordCommand command : commands) {
             log.info(String.format("Registering command %s", command.getName()));

@@ -50,8 +50,12 @@ public class RankUpAnnouncer {
         memberRepository.save(member);
 
         if (PlayerUtil.hasRankImproved(previousRank, currentRank)) {
-            discordBot.announceRankUp(member);
+            announce(member);
         }
+    }
+
+    public void announce(Member member) {
+        discordBot.announceRankUp(member);
     }
 
     private Member getNextMemberToCheck() {

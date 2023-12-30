@@ -10,6 +10,8 @@ spring:
     driver-class-name: org.sqlite.JDBC
   artemis:
     mode: embedded
+  messages:
+    encoding: UTF-8
   session:
     store-type: jdbc
     jdbc:
