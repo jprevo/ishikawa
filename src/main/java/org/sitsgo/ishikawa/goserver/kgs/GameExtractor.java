@@ -2,7 +2,7 @@ package org.sitsgo.ishikawa.goserver.kgs;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.sitsgo.ishikawa.goserver.Game;
+import org.sitsgo.ishikawa.go.Game;
 import org.sitsgo.ishikawa.goserver.GoServerException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;

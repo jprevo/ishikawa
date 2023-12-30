@@ -1,6 +1,7 @@
 package org.sitsgo.ishikawa.announcement;
 
 import org.sitsgo.ishikawa.discord.DiscordBot;
+import org.sitsgo.ishikawa.go.PlayerUtil;
 import org.sitsgo.ishikawa.gowebsite.WebsiteParsingException;
 import org.sitsgo.ishikawa.gowebsite.ffg.FFGProfile;
 import org.sitsgo.ishikawa.gowebsite.ffg.FFGWebsite;
@@ -45,12 +46,10 @@ public class RankUpAnnouncer {
             return;
         }
 
-        boolean hasRankedUp = isRankUp(previousRank, currentRank);
-
         member.updateFromFFGProfile(profile);
         memberRepository.save(member);
 
-        if (hasRankedUp) {
+        if (PlayerUtil.hasRankImproved(previousRank, currentRank)) {
             discordBot.announceRankUp(member);
         }
     }
@@ -86,30 +85,5 @@ public class RankUpAnnouncer {
     private void updateLastCheck(Member member) {
         member.setFfgLastCheck(new Date());
         memberRepository.save(member);
-    }
-
-    public boolean isRankUp(String previousRank, String currentRank) {
-        if (previousRank.endsWith("k") && currentRank.endsWith("d")) {
-            return true;
-        }
-
-        if (previousRank.endsWith("d") && currentRank.endsWith("k")) {
-            return false;
-        }
-
-        int previousRankNumber = Integer.parseInt(previousRank.substring(0, previousRank.length() - 1));
-        int currentRankNumber = Integer.parseInt(currentRank.substring(0, currentRank.length() - 1));
-
-        if (previousRank.endsWith("k")) {
-            if (currentRankNumber < previousRankNumber) {
-                return true;
-            }
-        }
-
-        if (previousRank.endsWith("d")) {
-            return currentRankNumber > previousRankNumber;
-        }
-
-        return false;
     }
 }

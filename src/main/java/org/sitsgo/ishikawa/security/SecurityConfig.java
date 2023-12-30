@@ -36,7 +36,7 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        String[] authEndPoints = {"/login", "/logout", "/user", "/auth"};
+        String[] authEndPoints = {"/login", "/logout", "/auth", "/api/user/me"};
         String[] frontendEndPoints = {"/", "/index.html", "/assets/**"};
 
         return http

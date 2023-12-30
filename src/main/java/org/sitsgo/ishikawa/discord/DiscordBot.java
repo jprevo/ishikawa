@@ -14,7 +14,7 @@ import org.sitsgo.ishikawa.discord.command.DiscordButtonCommand;
 import org.sitsgo.ishikawa.discord.command.DiscordCommand;
 import org.sitsgo.ishikawa.discord.command.DiscordMenuCommand;
 import org.sitsgo.ishikawa.discord.command.DiscordModalCommand;
-import org.sitsgo.ishikawa.goserver.Game;
+import org.sitsgo.ishikawa.go.Game;
 import org.sitsgo.ishikawa.gowebsite.ffg.FFGWebsite;
 import org.sitsgo.ishikawa.member.Member;
 import org.sitsgo.ishikawa.member.MemberRepository;

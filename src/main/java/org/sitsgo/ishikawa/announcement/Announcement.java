@@ -4,7 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import org.sitsgo.ishikawa.goserver.Game;
+import org.sitsgo.ishikawa.go.Game;
 import org.sitsgo.ishikawa.goserver.GoServerType;
 
 @Entity
@@ -39,6 +39,7 @@ public class Announcement {
             case OGS -> "ogs";
             case TYGEM -> "tygem";
             case FOX -> "fox";
+            case IGS -> "igs";
         };
     }
 

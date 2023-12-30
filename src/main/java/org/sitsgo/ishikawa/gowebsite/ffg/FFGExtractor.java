@@ -2,6 +2,7 @@ package org.sitsgo.ishikawa.gowebsite.ffg;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.sitsgo.ishikawa.go.PlayerUtil;
 import org.sitsgo.ishikawa.gowebsite.WebsiteParsingException;
 
 public class FFGExtractor {
@@ -50,15 +51,11 @@ public class FFGExtractor {
     private String convertRankElement(Element element) throws WebsiteParsingException {
         String rank = parseRankFromElement(element);
 
-        if (!isRankValid(rank)) {
+        if (!PlayerUtil.isRankValid(rank)) {
             throw new WebsiteParsingException("This rank is not valid");
         }
 
         return rank;
-    }
-
-    public boolean isRankValid(String rank) {
-        return rank.matches("^([0-9]{1,2})(k|d|p)$");
     }
 
     private String parseRankFromElement(Element rankElement) {

@@ -1,7 +1,7 @@
 package org.sitsgo.ishikawa.announcement;
 
 import org.sitsgo.ishikawa.discord.DiscordBot;
-import org.sitsgo.ishikawa.goserver.Game;
+import org.sitsgo.ishikawa.go.Game;
 import org.sitsgo.ishikawa.goserver.GoServerType;
 import org.sitsgo.ishikawa.goserver.kgs.KgsGoServer;
 import org.sitsgo.ishikawa.goserver.ogs.OgsServer;
@@ -56,13 +56,16 @@ public class GameAnnouncer {
     }
 
     private void runAnnouncements(ArrayList<Game> games) {
-        games.removeIf(this::isNotClubGame);
-        games.removeIf(this::isAlreadyAnnounced);
+        games.removeIf(this::shouldNotAnnounce);
 
         games.forEach(game -> {
             bot.announceGame(game);
             persistAnnouncement(game);
         });
+    }
+
+    private boolean shouldNotAnnounce(Game game) {
+        return isNotClubGame(game) || isAlreadyAnnounced(game);
     }
 
     private void persistAnnouncement(Game game) {

@@ -4,13 +4,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.json.JSONObject;
 import org.sitsgo.ishikawa.discord.oauth.DiscordOAuth;
-import org.sitsgo.ishikawa.security.AdminUser;
 import org.sitsgo.ishikawa.security.AdminUserService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -39,17 +35,6 @@ public class DiscordAuthController {
         this.adminUserService = adminUserService;
     }
 
-    @GetMapping("/user")
-    public ResponseEntity<?> user(Authentication authentication) {
-        if (authentication == null) {
-            return ResponseEntity.ok("null");
-        }
-
-        AdminUser user = (AdminUser) authentication.getPrincipal();
-
-        return ResponseEntity.ok(user);
-    }
-
     @GetMapping("/login")
     public RedirectView login() {
         return new RedirectView(oAuth.getAuthorizationURL());
@@ -68,15 +53,7 @@ public class DiscordAuthController {
             JSONObject user = oAuth.get("/users/@me", accessToken);
 
             UserDetails adminUser = adminUserService.loadUserByUsername(user.getString("id"));
-
-            Authentication authentication = new UsernamePasswordAuthenticationToken(
-                    adminUser,
-                    null,
-                    adminUser.getAuthorities()
-            );
-
-            SecurityContext context = SecurityContextHolder.getContext();
-            context.setAuthentication(authentication);
+            SecurityContext context = adminUserService.createContextForUser(adminUser);
 
             HttpSession session = request.getSession(true);
             session.setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY, context);

@@ -1,4 +1,6 @@
-package org.sitsgo.ishikawa.goserver;
+package org.sitsgo.ishikawa.go;
+
+import org.sitsgo.ishikawa.goserver.GoServerType;
 
 public class Game {
     private final String id;
