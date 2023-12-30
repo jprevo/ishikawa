@@ -4,13 +4,14 @@ import UserContext from "./user/user-context.ts";
 import { User } from "./user/user.ts";
 import Nav from "./Nav.tsx";
 import MemberList from "./MemberList.tsx";
+import Endpoint from "./endpoint.ts";
 
 function App() {
   const { user, setUser, login } = useContext(UserContext);
 
   useEffect(() => {
     const loadUser = async () => {
-      const response: Response = await fetch("/user");
+      const response: Response = await fetch(Endpoint.User);
       const data: User | null = await response.json();
 
       if (!data) {

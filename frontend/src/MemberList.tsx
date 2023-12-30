@@ -2,80 +2,38 @@ import "@inovua/reactdatagrid-community/index.css";
 import "@inovua/reactdatagrid-community/theme/blue-dark.css";
 import "./scss/grid.scss";
 import ReactDataGrid from "@inovua/reactdatagrid-community";
-import { TypeColumn } from "@inovua/reactdatagrid-community/types";
-import { useCallback } from "react";
-
-interface Data {
-  discordDisplayName: string;
-  ffgName?: string;
-  ffgRankHybrid?: string;
-  ffgRankMain?: string;
-}
-
-interface LoadedResponse {
-  data: Data[];
-  count: number;
-}
-
-const load = async (): Promise<LoadedResponse> => {
-  const response: Response = await fetch("/api/member/list");
-  const data: Data[] = await response.json();
-
-  return {
-    data,
-    count: data.length,
-  };
-};
+import {
+  TypeColumn,
+  TypeDataSource,
+  TypeFilterValue,
+} from "@inovua/reactdatagrid-community/types";
+import { useEffect, useState } from "react";
+import rankSort from "./member-list/rank-sort.ts";
+import Endpoint from "./endpoint.ts";
+import { Member } from "./member-list/member.ts";
+import CellRender from "./member-list/cell-render.tsx";
 
 function MemberList() {
-  const dataSource = useCallback(load, []);
+  const [dataSource, setDataSource] = useState<TypeDataSource>();
 
-  const rankSort = (p1: string, p2: string): number => {
-    if (!p1) {
-      return 1;
-    }
+  useEffect(() => {
+    const loadMembers = async () => {
+      const response: Response = await fetch(Endpoint.MemberList);
+      const list: Member[] = await response.json();
 
-    if (!p2) {
-      return -1;
-    }
+      setDataSource(list);
+    };
 
-    if (p1.endsWith("d") && p2.endsWith("k")) {
-      return -1;
-    }
-
-    if (p1.endsWith("k") && p2.endsWith("d")) {
-      return 1;
-    }
-
-    const p1NumericalRank: number = parseInt(
-      p1.substring(0, p1.length - 1),
-      10,
-    );
-    const p2NumericalRank: number = parseInt(
-      p2.substring(0, p2.length - 1),
-      10,
-    );
-
-    console.log(p1NumericalRank, p2NumericalRank);
-
-    if (p1.endsWith("k")) {
-      return p1NumericalRank < p2NumericalRank ? -1 : 1;
-    }
-
-    if (p1.endsWith("d")) {
-      return p1NumericalRank > p2NumericalRank ? -1 : 1;
-    }
-
-    return 1;
-  };
+    loadMembers();
+  }, []);
 
   const columns: TypeColumn[] = [
     {
       name: "discordAvatarUrl",
       header: "Avatar",
       defaultWidth: 60,
-      render: ({ value }) => {
-        return <img src={value} className="avatar" />;
+      render: ({ data }) => {
+        return CellRender.avatar(data);
       },
     },
     {
@@ -83,12 +41,7 @@ function MemberList() {
       header: "Discord",
       defaultFlex: 1,
       render: ({ data }) => {
-        return (
-          <>
-            <div>{data.discordDisplayName}</div>
-            <small>{data.discordUsername}</small>
-          </>
-        );
+        return CellRender.discordName(data);
       },
     },
     {
@@ -96,32 +49,17 @@ function MemberList() {
       header: "Nom (FFG)",
       defaultFlex: 1,
       render: ({ data }) => {
-        if (!data.ffgId) {
-          return data.ffgName;
-        }
-
-        const url: string =
-          "https://ffg.jeudego.org/php/affichePersonne.php?id=" +
-          data.ffgId.toString(10);
-
-        return (
-          <a href={url} target="_blank">
-            {data.ffgName}
-          </a>
-        );
+        return CellRender.name(data);
       },
     },
     {
       name: "ffgRankHybrid",
-      header: "FFG Hybride",
+      header: "FFG",
       sort: rankSort,
       defaultWidth: 120,
-    },
-    {
-      name: "ffgRankMain",
-      header: "Principale",
-      defaultWidth: 90,
-      sort: rankSort,
+      render: ({ data }) => {
+        return CellRender.rank(data);
+      },
     },
     {
       name: "inClub",
@@ -135,6 +73,61 @@ function MemberList() {
       defaultWidth: 90,
       render: ({ value }) => (value ? "Oui" : "Non"),
     },
+    {
+      name: "admin",
+      header: "Admin",
+      defaultWidth: 90,
+      render: ({ value }) => (value ? "Oui" : "Non"),
+    },
+    {
+      name: "kgsUsername",
+      header: "KGS",
+      defaultWidth: 100,
+    },
+    {
+      name: "ogsUsername",
+      header: "OGS",
+      defaultWidth: 100,
+    },
+    {
+      name: "foxUsername",
+      header: "Fox",
+      defaultWidth: 100,
+    },
+    {
+      name: "igsUsername",
+      header: "IGS",
+      defaultWidth: 100,
+    },
+    {
+      name: "tygemUsername",
+      header: "Tygem",
+      defaultWidth: 100,
+    },
+  ];
+
+  if (!dataSource) {
+    return <>Chargement...</>;
+  }
+
+  const filters: TypeFilterValue = [
+    {
+      name: "discordDisplayName",
+      type: "string",
+      operator: "startsWith",
+      value: "",
+    },
+    { name: "ffgName", type: "string", operator: "startsWith", value: "" },
+    { name: "kgsUsername", type: "string", operator: "startsWith", value: "" },
+    { name: "ogsUsername", type: "string", operator: "startsWith", value: "" },
+    { name: "foxUsername", type: "string", operator: "startsWith", value: "" },
+    { name: "igsUsername", type: "string", operator: "startsWith", value: "" },
+    {
+      name: "tygemUsername",
+      type: "string",
+      operator: "startsWith",
+      value: "",
+    },
   ];
 
   return (
@@ -144,6 +137,7 @@ function MemberList() {
       theme="blue-dark"
       rowHeight={60}
       className="grid"
+      defaultFilterValue={filters}
     ></ReactDataGrid>
   );
 }
