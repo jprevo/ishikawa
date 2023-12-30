@@ -7,6 +7,7 @@ import org.sitsgo.ishikawa.discord.oauth.DiscordOAuth;
 import org.sitsgo.ishikawa.security.AdminUser;
 import org.sitsgo.ishikawa.security.AdminUserService;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -18,6 +19,7 @@ import org.springframework.security.web.context.HttpSessionSecurityContextReposi
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.io.IOException;
@@ -81,7 +83,7 @@ public class DiscordAuthController {
 
             return new RedirectView(frontendUrl);
         } catch (UsernameNotFoundException e) {
-            throw new RuntimeException("Forbidden");
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Forbidden", e);
         } catch (IOException e) {
             throw new RuntimeException("Could not get user");
         }
