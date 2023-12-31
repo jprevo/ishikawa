@@ -1,7 +1,7 @@
 package org.sitsgo.ishikawa.web.api;
 
-import org.sitsgo.ishikawa.announcement.GameAnnouncer;
-import org.sitsgo.ishikawa.announcement.RankUpAnnouncer;
+import org.sitsgo.ishikawa.announcement.game.GameAnnouncer;
+import org.sitsgo.ishikawa.announcement.rankup.RankUpAnnouncer;
 import org.sitsgo.ishikawa.go.Game;
 import org.sitsgo.ishikawa.goserver.GoServerType;
 import org.sitsgo.ishikawa.member.Member;
@@ -38,7 +38,6 @@ public class AnnouncementController {
         Game game = new Game(UUID.randomUUID().toString());
 
         game.setServerType(GoServerType.KGS);
-        game.setServerName("IRL");
         game.setBlack("Shin Jinseo");
         game.setBlackRank("9p");
         game.setWhite("Sai");

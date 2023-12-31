@@ -10,6 +10,8 @@ import discord4j.core.spec.MessageCreateSpec;
 import discord4j.discordjson.json.ApplicationCommandRequest;
 import discord4j.rest.util.Color;
 import org.reactivestreams.Publisher;
+import org.sitsgo.ishikawa.announcement.game.GameAnnouncementEvent;
+import org.sitsgo.ishikawa.announcement.rankup.RankUpAnnouncementEvent;
 import org.sitsgo.ishikawa.discord.command.DiscordButtonCommand;
 import org.sitsgo.ishikawa.discord.command.DiscordCommand;
 import org.sitsgo.ishikawa.discord.command.DiscordMenuCommand;
@@ -22,6 +24,7 @@ import org.sitsgo.ishikawa.member.MemberRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
@@ -158,6 +161,11 @@ public class DiscordBot {
                 .withEphemeral(true);
     }
 
+    @EventListener
+    public void onApplicationEvent(GameAnnouncementEvent event) {
+        announceGame(event.game());
+    }
+
     public void announceGame(Game game) {
         if (isDisabled()) {
             return;
@@ -187,6 +195,11 @@ public class DiscordBot {
         }
 
         return embed.build();
+    }
+
+    @EventListener
+    public void onApplicationEvent(RankUpAnnouncementEvent event) {
+        announceRankUp(event.member());
     }
 
     public void announceRankUp(Member member) {

@@ -1,4 +1,4 @@
-package org.sitsgo.ishikawa.announcement;
+package org.sitsgo.ishikawa.announcement.game;
 
 import org.junit.jupiter.api.Test;
 import org.sitsgo.ishikawa.go.Game;
@@ -6,56 +6,56 @@ import org.sitsgo.ishikawa.goserver.GoServerType;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class AnnouncementTest {
+public class GameAnnouncementTest {
 
     @Test
     public void testCreateFromGame() {
         Game game = new Game("0123456789");
         game.setServerType(GoServerType.KGS);
 
-        Announcement announcement = Announcement.createFromGame(game);
+        GameAnnouncement gameAnnouncement = GameAnnouncement.createFromGame(game);
 
-        assertEquals("kgs", announcement.getServer());
-        assertEquals("0123456789", announcement.getGameId());
+        assertEquals("KGS", gameAnnouncement.getServer());
+        assertEquals("0123456789", gameAnnouncement.getGameId());
     }
 
     @Test
     public void testGetServerName_KGS() {
         GoServerType serverType = GoServerType.KGS;
-        String expected = "kgs";
-        String actual = Announcement.getServerName(serverType);
+        String expected = "KGS";
+        String actual = Game.getServerNameFromType(serverType);
         assertEquals(expected, actual, "For GoServerType.KGS, getServerName should return 'kgs'.");
     }
 
     @Test
     public void testGetServerName_OGS() {
         GoServerType serverType = GoServerType.OGS;
-        String expected = "ogs";
-        String actual = Announcement.getServerName(serverType);
+        String expected = "OGS";
+        String actual = Game.getServerNameFromType(serverType);
         assertEquals(expected, actual, "For GoServerType.OGS, getServerName should return 'ogs'.");
     }
 
     @Test
     public void testGetServerName_TYGEM() {
         GoServerType serverType = GoServerType.TYGEM;
-        String expected = "tygem";
-        String actual = Announcement.getServerName(serverType);
+        String expected = "Tygem";
+        String actual = Game.getServerNameFromType(serverType);
         assertEquals(expected, actual, "For GoServerType.TYGEM, getServerName should return 'tygem'.");
     }
 
     @Test
     public void testGetServerName_FOX() {
         GoServerType serverType = GoServerType.FOX;
-        String expected = "fox";
-        String actual = Announcement.getServerName(serverType);
+        String expected = "Fox";
+        String actual = Game.getServerNameFromType(serverType);
         assertEquals(expected, actual, "For GoServerType.FOX, getServerName should return 'fox'.");
     }
 
     @Test
     public void testGetServerName_IGS() {
         GoServerType serverType = GoServerType.IGS;
-        String expected = "igs";
-        String actual = Announcement.getServerName(serverType);
+        String expected = "IGS";
+        String actual = Game.getServerNameFromType(serverType);
         assertEquals(expected, actual, "For GoServerType.IGS, getServerName should return 'igs'.");
     }
 }

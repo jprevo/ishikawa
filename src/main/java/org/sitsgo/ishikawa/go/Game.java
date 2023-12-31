@@ -12,7 +12,6 @@ public class Game {
     private int size = 19;
     private int handicap = 0;
     private GoServerType serverType = GoServerType.KGS;
-    private String serverName;
     private String url;
 
     public Game(String id) {
@@ -21,6 +20,16 @@ public class Game {
 
     public Game(int id) {
         this.id = Integer.toString(id);
+    }
+
+    public static String getServerNameFromType(GoServerType serverType) {
+        return switch (serverType) {
+            case KGS -> "KGS";
+            case OGS -> "OGS";
+            case TYGEM -> "Tygem";
+            case FOX -> "Fox";
+            case IGS -> "IGS";
+        };
     }
 
     public String getId() {
@@ -100,11 +109,7 @@ public class Game {
     }
 
     public String getServerName() {
-        return serverName;
-    }
-
-    public void setServerName(String serverName) {
-        this.serverName = serverName;
+        return getServerNameFromType(serverType);
     }
 
     public String getTitle() {
@@ -138,12 +143,13 @@ public class Game {
 
     @Override
     public String toString() {
-        return String.format("[%s] : %s[%s] vs %s[%s]",
+        return String.format("[%s] : %s[%s] vs %s[%s] on %s",
                 getId(),
                 getWhite(),
                 getWhiteRank(),
                 getBlack(),
-                getBlackRank()
+                getBlackRank(),
+                getServerName()
         );
     }
 }

@@ -22,26 +22,24 @@ public class Member {
     private String foxUsername;
     private String tygemUsername;
     private String igsUsername;
+    private String osrUsername;
     private Integer ffgId;
     private String ffgName;
     private String ffgRankHybrid;
     private String ffgRankMain;
+    private Boolean anonymous = false;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date ffgLastCheck;
-    private Boolean anonymous = false;
-    private String osrUsername;
 
     private Boolean isAdmin = false;
     private Boolean isInClub;
 
-    public Member() {
-    }
-
     @Override
     public String toString() {
         return String.format(
-                "Member[id=%d]",
+                "Member %s [id=%d]",
+                getDisplayName(),
                 id);
     }
 

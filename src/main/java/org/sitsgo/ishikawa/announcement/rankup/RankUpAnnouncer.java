@@ -1,32 +1,36 @@
-package org.sitsgo.ishikawa.announcement;
+package org.sitsgo.ishikawa.announcement.rankup;
 
-import org.sitsgo.ishikawa.discord.DiscordBot;
 import org.sitsgo.ishikawa.go.PlayerUtil;
 import org.sitsgo.ishikawa.gowebsite.WebsiteParsingException;
 import org.sitsgo.ishikawa.gowebsite.ffg.FFGProfile;
 import org.sitsgo.ishikawa.gowebsite.ffg.FFGWebsite;
 import org.sitsgo.ishikawa.member.Member;
 import org.sitsgo.ishikawa.member.MemberRepository;
+import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.context.ApplicationEventPublisherAware;
+import org.springframework.lang.NonNull;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
 @Component
-public class RankUpAnnouncer {
-    private final MemberRepository memberRepository;
-    private final FFGWebsite ffgWebsite;
-    private final DiscordBot discordBot;
+public class RankUpAnnouncer implements ApplicationEventPublisherAware {
 
-    public RankUpAnnouncer(MemberRepository memberRepository, FFGWebsite ffgWebsite, DiscordBot discordBot) {
+    private final MemberRepository memberRepository;
+
+    private final FFGWebsite ffgWebsite;
+
+    private ApplicationEventPublisher applicationEventPublisher;
+
+    public RankUpAnnouncer(MemberRepository memberRepository, FFGWebsite ffgWebsite) {
         this.memberRepository = memberRepository;
         this.ffgWebsite = ffgWebsite;
-        this.discordBot = discordBot;
     }
 
     @Scheduled(fixedRate = 300000)
     public void run() {
-        Member member = getNextMemberToCheck();
+        Member member = loadNextAcceptableMember();
         FFGProfile profile;
 
         if (member == null) {
@@ -46,19 +50,24 @@ public class RankUpAnnouncer {
             return;
         }
 
-        member.updateFromFFGProfile(profile);
-        memberRepository.save(member);
+        updateProfile(member, profile);
 
         if (PlayerUtil.hasRankImproved(previousRank, currentRank)) {
             announce(member);
         }
     }
 
-    public void announce(Member member) {
-        discordBot.announceRankUp(member);
+    private void updateProfile(Member member, FFGProfile profile) {
+        member.updateFromFFGProfile(profile);
+        memberRepository.save(member);
     }
 
-    private Member getNextMemberToCheck() {
+    public void announce(Member member) {
+        RankUpAnnouncementEvent event = new RankUpAnnouncementEvent(member);
+        applicationEventPublisher.publishEvent(event);
+    }
+
+    private Member loadNextAcceptableMember() {
         Member member = memberRepository.findTopByOrderByFfgLastCheckAsc();
 
         if (member == null) {
@@ -89,5 +98,10 @@ public class RankUpAnnouncer {
     private void updateLastCheck(Member member) {
         member.setFfgLastCheck(new Date());
         memberRepository.save(member);
+    }
+
+    @Override
+    public void setApplicationEventPublisher(@NonNull ApplicationEventPublisher applicationEventPublisher) {
+        this.applicationEventPublisher = applicationEventPublisher;
     }
 }

@@ -51,7 +51,6 @@ public class KgsGoServer implements GoServer {
 
             games.forEach(game -> {
                 game.setServerType(getType());
-                game.setServerName(getName());
             });
         } catch (GoServerException e) {
             log.error(e.getMessage());

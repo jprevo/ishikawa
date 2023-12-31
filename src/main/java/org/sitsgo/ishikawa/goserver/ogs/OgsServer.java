@@ -89,7 +89,6 @@ public class OgsServer implements GoServer {
 
         Game game = new Game(gameData.getInt("id"));
 
-        game.setServerName(getName());
         game.setServerType(GoServerType.OGS);
 
         game.setKomi(gameProperties.getDouble("komi"));

@@ -1,14 +1,14 @@
-package org.sitsgo.ishikawa.announcement;
+package org.sitsgo.ishikawa.announcement.game;
 
-import org.sitsgo.ishikawa.discord.DiscordBot;
 import org.sitsgo.ishikawa.go.Game;
 import org.sitsgo.ishikawa.goserver.GoServerType;
 import org.sitsgo.ishikawa.goserver.kgs.KgsGoServer;
 import org.sitsgo.ishikawa.goserver.ogs.OgsServer;
 import org.sitsgo.ishikawa.member.Member;
 import org.sitsgo.ishikawa.member.MemberRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.context.ApplicationEventPublisherAware;
+import org.springframework.lang.NonNull;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -17,10 +17,7 @@ import java.util.ArrayList;
 
 @Component
 @EnableScheduling
-public class GameAnnouncer {
-    private static final Logger log = LoggerFactory.getLogger(GameAnnouncer.class);
-
-    private final DiscordBot bot;
+public class GameAnnouncer implements ApplicationEventPublisherAware {
 
     private final KgsGoServer kgs;
 
@@ -28,19 +25,19 @@ public class GameAnnouncer {
 
     private final MemberRepository memberRepository;
 
-    private final AnnouncementRepository announcementRepository;
+    private final GameAnnouncementRepository gameAnnouncementRepository;
+
+    private ApplicationEventPublisher applicationEventPublisher;
 
     public GameAnnouncer(
-            DiscordBot bot,
             KgsGoServer kgs,
             OgsServer ogs,
             MemberRepository memberRepository,
-            AnnouncementRepository announcementRepository) {
-        this.bot = bot;
+            GameAnnouncementRepository gameAnnouncementRepository) {
         this.kgs = kgs;
         this.ogs = ogs;
         this.memberRepository = memberRepository;
-        this.announcementRepository = announcementRepository;
+        this.gameAnnouncementRepository = gameAnnouncementRepository;
     }
 
     @Scheduled(cron = "0/30 * * * * ?")
@@ -61,8 +58,15 @@ public class GameAnnouncer {
     }
 
     public void announceGame(Game game) {
-        bot.announceGame(game);
+        GameAnnouncementEvent event = new GameAnnouncementEvent(game);
+        applicationEventPublisher.publishEvent(event);
+
         persistAnnouncement(game);
+    }
+
+    @Override
+    public void setApplicationEventPublisher(@NonNull ApplicationEventPublisher applicationEventPublisher) {
+        this.applicationEventPublisher = applicationEventPublisher;
     }
 
     private boolean shouldNotAnnounce(Game game) {
@@ -70,8 +74,8 @@ public class GameAnnouncer {
     }
 
     private void persistAnnouncement(Game game) {
-        Announcement announcement = Announcement.createFromGame(game);
-        announcementRepository.save(announcement);
+        GameAnnouncement gameAnnouncement = GameAnnouncement.createFromGame(game);
+        gameAnnouncementRepository.save(gameAnnouncement);
     }
 
     private boolean isNotClubGame(Game game) {
@@ -102,12 +106,10 @@ public class GameAnnouncer {
     }
 
     private boolean isAlreadyAnnounced(Game game) {
-        String serverName = Announcement.getServerName(game.getServerType());
+        GameAnnouncement gameAnnouncement = gameAnnouncementRepository
+                .findTopByGameIdAndServer(game.getId(), game.getServerName());
 
-        Announcement announcement = announcementRepository
-                .findTopByGameIdAndServer(game.getId(), serverName);
-
-        return announcement != null;
+        return gameAnnouncement != null;
     }
 
 }
