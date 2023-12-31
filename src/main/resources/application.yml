@@ -4,12 +4,10 @@ spring:
       ddl-auto: update
     database-platform: org.hibernate.community.dialect.SQLiteDialect
   datasource:
-    url: ${DATABASE_URL}
-    username: ${DATABASE_USERNAME}
+    url: ${DATABASE_URL:jdbc:sqlite:var/database.sqlite}
+    username: ${DATABASE_USERNAME:ishikawa}
     password: ${DATABASE_PASSWORD}
     driver-class-name: org.sqlite.JDBC
-  artemis:
-    mode: embedded
   messages:
     encoding: UTF-8
   session:
@@ -17,7 +15,10 @@ spring:
     jdbc:
       initialize-schema: always
 
-frontend-url: ${FRONTEND_URL}
+server:
+  port: ${SERVER_PORT:8080}
+
+frontend-url: ${FRONTEND_URL:http://localhost:5173/}
 
 discord:
   token: ${DISCORD_TOKEN}
