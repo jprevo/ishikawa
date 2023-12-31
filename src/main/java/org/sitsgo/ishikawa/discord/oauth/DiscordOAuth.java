@@ -22,6 +22,7 @@ public class DiscordOAuth {
 
     @Value("${discord.oauth.redirect-uri}")
     private String redirectUri;
+    
     private final String[] scope = {"identify"};
 
     public String getAuthorizationURL() {

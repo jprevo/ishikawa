@@ -46,7 +46,7 @@ KGS_CHANNEL_ID
 In order to retrieve games from the KGS Go Server, we need a bot user to be able to sign in, and the room where games
 are played.
 
-### Others
+### Web
 
 ```
 FRONTEND_URL // http://localhost:5173/ for example
