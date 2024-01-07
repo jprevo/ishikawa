@@ -1,5 +1,6 @@
 import { Member } from "./member.ts";
 import { ReactElement } from "react";
+import Endpoint from "../endpoint.ts";
 
 const CellRender = {
   rank: (data: Member): ReactElement => {
@@ -17,9 +18,36 @@ const CellRender = {
       </>
     );
   },
-  name: (data: Member): ReactElement | string => {
+  name: (
+    data: Member,
+    loadMembers: CallableFunction,
+  ): ReactElement | string => {
+    let ffgReloadButton: ReactElement = <></>;
+
+    const reloadFfg = async () => {
+      const url: string = Endpoint.ReloadFFG.replace(
+        "{id}",
+        data.id.toString(10),
+      );
+      const response: Response = await fetch(url);
+      await response.json();
+
+      loadMembers();
+    };
+
     if (!data.ffgId) {
       return data.ffgName ?? "";
+    } else {
+      ffgReloadButton = (
+        <>
+          <br />
+          <small>
+            <a href="#" onClick={reloadFfg} className="secondary">
+              Recharger le profil FFG
+            </a>
+          </small>
+        </>
+      );
     }
 
     const url: string =
@@ -27,9 +55,12 @@ const CellRender = {
       data.ffgId.toString(10);
 
     return (
-      <a href={url} target="_blank">
-        {data.ffgName}
-      </a>
+      <>
+        <a href={url} target="_blank">
+          {data.ffgName}
+        </a>
+        {ffgReloadButton}
+      </>
     );
   },
   discordName: (data: Member): ReactElement => {

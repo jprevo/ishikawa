@@ -10,6 +10,8 @@ spring:
     driver-class-name: org.sqlite.JDBC
   messages:
     encoding: UTF-8
+  banner:
+    location: classpath:banner.txt
   session:
     store-type: jdbc
     jdbc:

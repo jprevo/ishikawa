@@ -31,11 +31,16 @@ public class RankUpAnnouncer implements ApplicationEventPublisherAware {
     @Scheduled(fixedRate = 300000)
     public void run() {
         Member member = loadNextAcceptableMember();
-        FFGProfile profile;
 
         if (member == null) {
             return;
         }
+
+        updateMemberAndAnnounce(member);
+    }
+
+    public void updateMemberAndAnnounce(Member member) {
+        FFGProfile profile;
 
         try {
             profile = ffgWebsite.getProfileFromFfgId(member.getFfgId());

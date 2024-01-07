@@ -1,4 +1,5 @@
 export interface Member {
+  id: number;
   discordDisplayName: string;
   discordUsername: string;
   discordAvatarUrl: string;

@@ -16,14 +16,14 @@ import CellRender from "./member-list/cell-render.tsx";
 function MemberList() {
   const [dataSource, setDataSource] = useState<TypeDataSource>();
 
+  const loadMembers = async () => {
+    const response: Response = await fetch(Endpoint.MemberList);
+    const list: Member[] = await response.json();
+
+    setDataSource(list);
+  };
+
   useEffect(() => {
-    const loadMembers = async () => {
-      const response: Response = await fetch(Endpoint.MemberList);
-      const list: Member[] = await response.json();
-
-      setDataSource(list);
-    };
-
     loadMembers();
   }, []);
 
@@ -40,6 +40,7 @@ function MemberList() {
       name: "discordDisplayName",
       header: "Discord",
       defaultFlex: 1,
+      minWidth: 120,
       render: ({ data }) => {
         return CellRender.discordName(data);
       },
@@ -47,9 +48,10 @@ function MemberList() {
     {
       name: "ffgName",
       header: "Nom (FFG)",
+      minWidth: 180,
       defaultFlex: 1,
       render: ({ data }) => {
-        return CellRender.name(data);
+        return CellRender.name(data, loadMembers);
       },
     },
     {
