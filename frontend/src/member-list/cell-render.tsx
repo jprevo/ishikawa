@@ -38,12 +38,16 @@ const CellRender = {
     if (!data.ffgId) {
       return data.ffgName ?? "";
     } else {
+      const lastCheck = data.ffgLastCheck ? (
+        <>&nbsp;({data.ffgLastCheck})</>
+      ) : null;
+
       ffgReloadButton = (
         <>
           <br />
           <small>
             <a href="#" onClick={reloadFfg} className="secondary">
-              Recharger le profil FFG
+              Recharger le profil FFG{lastCheck}
             </a>
           </small>
         </>

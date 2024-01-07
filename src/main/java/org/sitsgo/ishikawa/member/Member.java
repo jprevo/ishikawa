@@ -1,5 +1,6 @@
 package org.sitsgo.ishikawa.member;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import org.sitsgo.ishikawa.gowebsite.ffg.FFGProfile;
 
@@ -30,6 +31,7 @@ public class Member {
     private Boolean anonymous = false;
 
     @Temporal(TemporalType.TIMESTAMP)
+    @JsonFormat(pattern = "dd/MM/YY à HH:mm")
     private Date ffgLastCheck;
 
     private Boolean isAdmin = false;
@@ -187,6 +189,7 @@ public class Member {
         this.setFfgName(profile.getName());
         this.setFfgRankMain(profile.getMainRank());
         this.setFfgRankHybrid(profile.getHybridRank());
+        this.setFfgLastCheck(new Date());
     }
 
     public Boolean getAnonymous() {

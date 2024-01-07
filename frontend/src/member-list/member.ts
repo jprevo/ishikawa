@@ -7,5 +7,6 @@ export interface Member {
   ffgName?: string;
   ffgRankHybrid?: string;
   ffgRankMain?: string;
+  ffgLastCheck?: string;
   admin: boolean;
 }
