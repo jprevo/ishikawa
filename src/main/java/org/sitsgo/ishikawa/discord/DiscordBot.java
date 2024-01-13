@@ -185,9 +185,13 @@ public class DiscordBot {
                 .title(i18n.t("discord.game.title", game.getTitle()))
                 .description(i18n.t("discord.game.start"))
                 .addField(i18n.t("discord.game.server"), game.getServerName(), false)
-                .addField(i18n.t("discord.game.komi"), String.valueOf(game.getKomi()), true)
-                .addField(i18n.t("discord.game.handicap"), String.valueOf(game.getHandicap()), true)
-                .addField(i18n.t("discord.game.goban"), game.getGobanSize(), true)
+                .addField(i18n.t("discord.game.komi"), String.valueOf(game.getKomi()), true);
+
+        if (game.hasHandicap()) {
+            embed.addField(i18n.t("discord.game.handicap"), String.valueOf(game.getHandicap()), true);
+        }
+
+        embed.addField(i18n.t("discord.game.goban"), game.getGobanSize(), true)
                 .timestamp(Instant.now());
 
         if (game.hasUrl()) {

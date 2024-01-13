@@ -100,6 +100,10 @@ public class Game {
         this.handicap = handicap;
     }
 
+    public boolean hasHandicap() {
+        return this.handicap != 0;
+    }
+
     public GoServerType getServerType() {
         return serverType;
     }

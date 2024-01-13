@@ -1,5 +1,6 @@
 package org.sitsgo.ishikawa.goserver.kgs;
 
+import lombok.extern.slf4j.Slf4j;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.sitsgo.ishikawa.go.Game;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 
 @Component
+@Slf4j
 public class GameExtractor {
 
     @Value("${goserver.kgs.channel-id}")
@@ -25,6 +27,8 @@ public class GameExtractor {
 
         JSONArray gameRecords = room.getJSONArray("games");
 
+        log.info(gameRecords.toString());
+
         for (int j = 0; j < gameRecords.length(); j++) {
             JSONObject record = gameRecords.getJSONObject(j);
 
@@ -38,6 +42,10 @@ public class GameExtractor {
 
             if (record.has("komi")) {
                 game.setKomi(record.getDouble("komi"));
+            }
+
+            if (record.has("size")) {
+                game.setSize(record.getInt("size"));
             }
 
             if (record.has("handicap")) {
