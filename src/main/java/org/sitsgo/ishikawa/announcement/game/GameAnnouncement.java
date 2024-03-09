@@ -11,9 +11,7 @@ public class GameAnnouncement {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
     private String server;
-
     private String gameId;
 
     public static GameAnnouncement createFromGame(Game game) {

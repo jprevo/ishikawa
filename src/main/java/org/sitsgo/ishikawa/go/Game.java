@@ -1,13 +1,18 @@
 package org.sitsgo.ishikawa.go;
 
+import lombok.Data;
 import org.sitsgo.ishikawa.goserver.GoServerType;
+import org.sitsgo.ishikawa.member.Member;
 
+@Data
 public class Game {
     private final String id;
     private String white;
     private String whiteRank;
+    private Member whiteMember;
     private String black;
     private String blackRank;
+    private Member blackMember;
     private double komi = 7.5;
     private int size = 19;
     private int handicap = 0;
@@ -32,36 +37,12 @@ public class Game {
         };
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public String getWhite() {
-        return white;
-    }
-
-    public void setWhite(String white) {
-        this.white = white;
-    }
-
-    public String getBlack() {
-        return black;
-    }
-
-    public void setBlack(String black) {
-        this.black = black;
-    }
-
     public String getWhiteRank() {
         if (whiteRank == null) {
             return "-";
         }
 
         return whiteRank;
-    }
-
-    public void setWhiteRank(String whiteRank) {
-        this.whiteRank = whiteRank;
     }
 
     public String getBlackRank() {
@@ -72,44 +53,8 @@ public class Game {
         return blackRank;
     }
 
-    public void setBlackRank(String blackRank) {
-        this.blackRank = blackRank;
-    }
-
-    public double getKomi() {
-        return komi;
-    }
-
-    public int getSize() {
-        return size;
-    }
-
-    public void setKomi(double komi) {
-        this.komi = komi;
-    }
-
-    public void setSize(int size) {
-        this.size = size;
-    }
-
-    public int getHandicap() {
-        return handicap;
-    }
-
-    public void setHandicap(int handicap) {
-        this.handicap = handicap;
-    }
-
     public boolean hasHandicap() {
         return this.handicap != 0;
-    }
-
-    public GoServerType getServerType() {
-        return serverType;
-    }
-
-    public void setServerType(GoServerType serverType) {
-        this.serverType = serverType;
     }
 
     public String getServerName() {
@@ -117,24 +62,27 @@ public class Game {
     }
 
     public String getTitle() {
-        return String.format("%s[%s] vs %s[%s]",
+        String whiteRank = getWhiteMember().getFfgRankHybrid();
+        String blackRank = getBlackMember().getFfgRankHybrid();
+
+        if (whiteRank == null || whiteRank.isEmpty()) {
+            whiteRank = "-";
+        }
+
+        if (blackRank == null || blackRank.isEmpty()) {
+            blackRank = "-";
+        }
+
+        return String.format("%s [%s ffg] ⚔\uFE0F %s [%s ffg]",
                 getWhite(),
-                getWhiteRank(),
+                whiteRank,
                 getBlack(),
-                getBlackRank()
+                blackRank
         );
     }
 
     public String getGobanSize() {
         return String.format("%dx%d", getSize(), getSize());
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
     }
 
     public boolean hasUrl() {

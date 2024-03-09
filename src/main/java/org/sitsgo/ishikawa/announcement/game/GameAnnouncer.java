@@ -53,6 +53,7 @@ public class GameAnnouncer implements ApplicationEventPublisherAware {
     }
 
     public void runAnnouncements(ArrayList<Game> games) {
+        games.forEach(this::attachMembers);
         games.removeIf(this::shouldNotAnnounce);
         games.forEach(this::announceGame);
     }
@@ -73,17 +74,12 @@ public class GameAnnouncer implements ApplicationEventPublisherAware {
         return isNotClubGame(game) || isAlreadyAnnounced(game);
     }
 
-    private void persistAnnouncement(Game game) {
-        GameAnnouncement gameAnnouncement = GameAnnouncement.createFromGame(game);
-        gameAnnouncementRepository.save(gameAnnouncement);
-    }
-
-    private boolean isNotClubGame(Game game) {
+    private void attachMembers(Game game) {
         Member black = getMemberMatchingUsername(game.getServerType(), game.getBlack());
         Member white = getMemberMatchingUsername(game.getServerType(), game.getWhite());
 
         if (black == null || white == null) {
-            return true;
+            return;
         }
 
         if (!black.getInClub()) {
@@ -94,7 +90,17 @@ public class GameAnnouncer implements ApplicationEventPublisherAware {
             white = null;
         }
 
-        return white == null || black == null;
+        game.setBlackMember(black);
+        game.setWhiteMember(white);
+    }
+
+    private void persistAnnouncement(Game game) {
+        GameAnnouncement gameAnnouncement = GameAnnouncement.createFromGame(game);
+        gameAnnouncementRepository.save(gameAnnouncement);
+    }
+
+    private boolean isNotClubGame(Game game) {
+        return game.getWhiteMember() == null || game.getBlackMember() == null;
     }
 
     private Member getMemberMatchingUsername(GoServerType serverType, String username) {

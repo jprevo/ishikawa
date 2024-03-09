@@ -184,8 +184,20 @@ public class DiscordBot {
                 .color(Color.RED)
                 .title(i18n.t("discord.game.title", game.getTitle()))
                 .description(i18n.t("discord.game.start"))
-                .addField(i18n.t("discord.game.server"), game.getServerName(), false)
-                .addField(i18n.t("discord.game.komi"), String.valueOf(game.getKomi()), true);
+                .addField(i18n.t("discord.game.server"), game.getServerName(), false);
+
+        Member white = game.getWhiteMember();
+        Member black = game.getBlackMember();
+
+        if (!white.getAnonymous()) {
+            embed.addField(i18n.t("discord.game.white"), getGameAnnouncementMember(white), true);
+        }
+
+        if (!black.getAnonymous()) {
+            embed.addField(i18n.t("discord.game.black"), getGameAnnouncementMember(black), true);
+        }
+
+        embed.addField(i18n.t("discord.game.komi"), String.valueOf(game.getKomi()), false);
 
         if (game.hasHandicap()) {
             embed.addField(i18n.t("discord.game.handicap"), String.valueOf(game.getHandicap()), true);
@@ -199,6 +211,16 @@ public class DiscordBot {
         }
 
         return embed.build();
+    }
+
+    private String getGameAnnouncementMember(Member member) {
+        String display = member.getDiscordDisplayName();
+
+        if (member.getDisplayName() != null) {
+            display += "\n" + member.getDisplayName();
+        }
+
+        return display;
     }
 
     @EventListener
